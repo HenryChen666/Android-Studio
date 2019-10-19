@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Deliverable1-Group7</string>
+    <string name="loginTitle">Login</string>
+    <string name="usernameHint">(Enter your username)</string>
+    <string name="usernameView">Username</string>
+    <string name="passwordView">Password</string>
+    <string name="passwordHint">(Enter your password)</string>
+    <string name="enter">Enter</string>
+    <string name="or">OR</string>
+    <string name="createAccount">Create Account</string>
+</resources>
