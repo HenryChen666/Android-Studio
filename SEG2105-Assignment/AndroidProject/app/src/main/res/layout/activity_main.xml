@@ -93,6 +93,7 @@
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="OnEnter"
                 android:text="@string/enter" />
 
             <TextView
@@ -107,6 +108,7 @@
                 android:id="@+id/createAccountBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="OnCreateAccount"
                 android:text="@string/createAccount" />
 
         </LinearLayout>
