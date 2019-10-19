@@ -1,4 +1,8 @@
 1. Eric Assadi - 300079157
 2. Henry Chen - 300082076
 3. Ethan Allwood - 300061473
+<<<<<<< HEAD
 4. Justin Power - 300076223
+=======
+4. Nic Vittorini (Polarheart) - 8322610
+>>>>>>> 385cc511be5629599e0e77a0e64169a88600adb2
