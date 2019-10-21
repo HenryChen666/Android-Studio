@@ -13,8 +13,8 @@ public class User {
     public User(){}
 
     public String getUsername() { return username; }
-    public String email() { return email; }
-    public String password() { return password; }
+    public String getEmail() { return email; }
+    public String getPassword() { return password; }
 
     public void setUsername(String username) {
         this.username = username;
