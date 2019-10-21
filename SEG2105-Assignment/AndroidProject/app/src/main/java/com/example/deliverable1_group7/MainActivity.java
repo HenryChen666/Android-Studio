@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void OnEnter(View view){
-        //Application Context and Activity
-        Intent intent = new Intent(getApplicationContext(), WelcomeScreen.class);
-        startActivityForResult(intent,0);
+//        //Application Context and Activity
+//        Intent intent = new Intent(getApplicationContext(), WelcomeScreen.class);
+//        startActivityForResult(intent,0);
     }
     public void OnCreateAccount(View view){
         //Application Context and Activity
