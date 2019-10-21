@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
 public class AccountCreationScreen extends AppCompatActivity {
+
+    EditText gUser, gEmail, gPass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,15 @@ public class AccountCreationScreen extends AppCompatActivity {
 
     public void OnCreateAccount(View view){
         //Application Context and Activity
+
+        gUser = (EditText)findViewById(R.id.usernameLogin);
+        gEmail = (EditText)findViewById(R.id.emailLogin);
+        gPass = (EditText)findViewById(R.id.passwordLogin);
+
+        Intent newUser = new Intent(getApplicationContext(), User.class);
+        newUser.putExtra(gUser, )
+
+
         Intent intent2 = new Intent(getApplicationContext(), WelcomeScreen.class);
         startActivityForResult(intent2,0);
     }
