@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void OnCreateAccount(View view){
         //Application Context and Activity
-        Intent intent = new Intent(getApplicationContext(), WelcomeScreen.class);
+        Intent intent = new Intent(getApplicationContext(), AccountCreationScreen.class);
         startActivityForResult(intent,0);
     }
 

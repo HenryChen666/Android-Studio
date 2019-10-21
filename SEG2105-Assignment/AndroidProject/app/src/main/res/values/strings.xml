@@ -8,4 +8,10 @@
     <string name="enter">Enter</string>
     <string name="or">OR</string>
     <string name="createAccount">Create Account</string>
+    <string name="createTitle">Create Account</string>
+    <string name="emailHint">(Enter your email)</string>
+    <string name="emailView">Email</string>
+
+
+
 </resources>
