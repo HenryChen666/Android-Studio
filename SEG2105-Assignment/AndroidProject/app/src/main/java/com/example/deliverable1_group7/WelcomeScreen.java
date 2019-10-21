@@ -13,6 +13,16 @@ public class WelcomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+
+        User displayUser = (User)getIntent().getSerializableExtra("currentUser");
+        String name = displayUser.getUsername();
+        String type;
+        if (displayUser.getUserType() == 1){
+            type = "Employee";
+        } else {
+            type = "Patient";
+        }
+
     }
 
     public void OnBack(View view){
