@@ -1,29 +1,23 @@
 package com.example.deliverable1_group7;
 
 public class User {
-    private String firstName;
-    private String lastName;
+    private String username;
     private String email;
     private String password;
-    public User(String firstName, String lastName, String email, String password){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String username, String email, String password){
+        this.username = username;
         this.email = email;
         this.password = password;
     }
 
     public User(){}
 
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
+    public String getUsername() { return username; }
     public String email() { return email; }
     public String password() { return password; }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
     public void setEmail(String email) {
         this.email = email;
