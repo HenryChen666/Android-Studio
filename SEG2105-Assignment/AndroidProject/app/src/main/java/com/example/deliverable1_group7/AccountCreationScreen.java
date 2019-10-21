@@ -16,12 +16,15 @@ public class AccountCreationScreen extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_creation_screen);
+
+        //get spinner from xml
         Spinner dropdownMenu = (Spinner) findViewById(R.id.spinner1);
 
+        //create a list of items for the user to select from
         String[] items = new String[]{"Employee", "Patient"};
 
+        //create and set the spinner to the adapter made that coincides with the created string array
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-
         dropdownMenu.setAdapter(adapter);
     }
 
