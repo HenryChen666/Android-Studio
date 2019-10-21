@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.io.Serializable;
+
 
 public class AccountCreationScreen extends AppCompatActivity {
 
@@ -58,7 +60,7 @@ public class AccountCreationScreen extends AppCompatActivity {
         createUser.setUserType(userType);
 
         Intent newUser = new Intent(getApplicationContext(), User.class);
-        newUser.putExtra("currentUser", createUser);
+        newUser.putExtra("currentUser", (Serializable) createUser);
 
 
         Intent intent2 = new Intent(getApplicationContext(), WelcomeScreen.class);
