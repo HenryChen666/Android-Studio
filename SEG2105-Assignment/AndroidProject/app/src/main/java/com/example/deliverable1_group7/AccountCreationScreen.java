@@ -15,6 +15,7 @@ import java.io.Serializable;
 public class AccountCreationScreen extends AppCompatActivity {
 
     EditText gUser, gEmail, gPass;
+    String username, role;
     Spinner dropdownMenu;
 
 
@@ -59,12 +60,19 @@ public class AccountCreationScreen extends AppCompatActivity {
         createUser.setPassword(gPass.getText().toString());
         createUser.setUserType(userType);
 
-        Intent newUser = new Intent(getApplicationContext(), User.class);
-        newUser.putExtra("currentUser", (Serializable) createUser);
+     //   Intent newUser = new Intent(getApplicationContext(), User.class);
+     //   newUser.putExtra("currentUser", (Serializable) createUser);
 
 
-        Intent intent2 = new Intent(getApplicationContext(), WelcomeScreen.class);
-        startActivityForResult(intent2,0);
+        Intent intent2 = new Intent(AccountCreationScreen.this, WelcomeScreen.class);
+        username = gUser.getText().toString();
+        role = type;
+        intent2.putExtra("username", username);
+        intent2.putExtra("role",type);
+        startActivity(intent2);
+        finish();
+
+        //startActivityForResult(intent2,0);
     }
 }
 
