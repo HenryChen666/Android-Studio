@@ -13,6 +13,7 @@ import android.widget.Spinner;
 public class AccountCreationScreen extends AppCompatActivity {
 
     EditText gUser, gEmail, gPass;
+    Spinner dropdownMenu;
 
 
     @Override
@@ -22,7 +23,7 @@ public class AccountCreationScreen extends AppCompatActivity {
         setContentView(R.layout.activity_account_creation_screen);
 
         //get spinner from xml
-        Spinner dropdownMenu = (Spinner) findViewById(R.id.spinner1);
+        dropdownMenu = (Spinner) findViewById(R.id.spinner1);
 
         //create a list of items for the user to select from
         String[] items = new String[]{"Employee", "Patient"};
@@ -40,8 +41,24 @@ public class AccountCreationScreen extends AppCompatActivity {
         gEmail = (EditText)findViewById(R.id.emailLogin);
         gPass = (EditText)findViewById(R.id.passwordLogin);
 
+        String type = dropdownMenu.getSelectedItem().toString();
+        int userType;
+        if (type == "Employee"){
+            userType = 1;
+        } else {
+            userType = 2;
+        }
+
+
+        User createUser = new User();
+
+        createUser.setEmail(gEmail.getText().toString());
+        createUser.setUsername(gUser.getText().toString());
+        createUser.setPassword(gPass.getText().toString());
+        createUser.setUserType(userType);
+
         Intent newUser = new Intent(getApplicationContext(), User.class);
-        newUser.putExtra(gUser, )
+        newUser.putExtra("currentUser", createUser);
 
 
         Intent intent2 = new Intent(getApplicationContext(), WelcomeScreen.class);
