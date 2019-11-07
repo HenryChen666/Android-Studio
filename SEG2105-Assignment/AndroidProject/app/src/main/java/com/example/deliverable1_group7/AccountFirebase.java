@@ -3,6 +3,7 @@ package com.example.deliverable1_group7;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +30,7 @@ public class AccountFirebase extends AppCompatActivity {
     EditText userEmail;
     EditText userpassword;
     Spinner userType;
-    Button adduser;
+    Button adduser1;
 
     List<User> accounts;
 
@@ -41,12 +42,12 @@ public class AccountFirebase extends AppCompatActivity {
         username =(EditText)findViewById(R.id.usernameLogin);
         userEmail = (EditText) findViewById(R.id.emailLogin);
         userpassword = (EditText) findViewById(R.id.passwordLogin);
-        adduser = (Button) findViewById(R.id.createAccountBtn);
+        adduser1 = (Button) findViewById(R.id.createAccountBtn1);
         userType = (Spinner) findViewById(R.id.spinner1);
 
 //        accounts = new ArrayList<>();
 
-        adduser.setOnClickListener(new View.OnClickListener() {
+        adduser1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addAccount();
@@ -55,39 +56,41 @@ public class AccountFirebase extends AppCompatActivity {
 
     }
 
-    @Override
-       protected void onStart(){
-            super.onStart();
-            databaseAccount.addValueEventListener(new ValueEventListener(){
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot){
-                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-                        User account = postSnapshot.getValue(User.class);
-                        accounts.add(account);  //Add the account to the list
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-    }
+//    @Override
+//       protected void onStart(){
+//            super.onStart();
+//            databaseAccount.addValueEventListener(new ValueEventListener(){
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot){
+//                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+//                        User account = postSnapshot.getValue(User.class);
+//                        accounts.add(account);  //Add the account to the list
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            });
+//    }
         public void addAccount(){
-            String name = username.getText().toString().trim();
-            String email = userEmail.getText().toString().trim();
-            String password = userpassword.getText().toString().trim();
+            String name = username.getText().toString();
+            String email = userEmail.getText().toString();
+            String password = userpassword.getText().toString();
             AccountCreationScreen pq = new AccountCreationScreen();
             int type = pq.getUserType();
-            if (!TextUtils.isEmpty(name)){
+
+            //if (!TextUtils.isEmpty(name)){
                 String id = databaseAccount.push().getKey();
                 User user = new User(id,name,email,password,type);
                 databaseAccount.child(id).setValue(user);
-//                username.setText("");
-//                userEmail.setText("");
-//                userpassword.setText("");
+                username.setText("");
+                userEmail.setText("");
+                userpassword.setText("");
                 Toast.makeText(this, "User Added", Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(this, "unsuccessful", Toast.LENGTH_LONG).show();
-            }
+
+//            }else{
+//                Toast.makeText(this, "unsuccessful", Toast.LENGTH_LONG).show();
+//            }
         }
 }

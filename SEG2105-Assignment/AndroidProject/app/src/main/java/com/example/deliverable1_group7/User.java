@@ -10,6 +10,8 @@ public class User {
     private String id;
     private int userType;
 
+    public User(){}
+
     public User(String id, String username, String email, String password, int userType){
         this.id = id;
         this.username = username;
@@ -19,7 +21,12 @@ public class User {
 
     }
 
-    public User(){}
+    public User(String username, String email, String password, int userType){
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+    }
 
     public String getUsername() { return username; }
     public String getEmail() { return email; }
