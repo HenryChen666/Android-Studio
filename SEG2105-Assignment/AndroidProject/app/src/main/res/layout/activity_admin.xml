@@ -25,15 +25,15 @@
         <LinearLayout
             android:id="@+id/adminLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150sp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/clininAdmin"
+                android:id="@+id/clinicAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Clinic Administration"
+                android:text="@string/clinicAdmin"
                 android:textColor="#1F1F1F"
                 android:textSize="24sp" />
 
@@ -50,13 +50,13 @@
                     android:id="@+id/adTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Admin Name: " />
+                    android:text="@string/adTxt" />
 
                 <TextView
                     android:id="@+id/administrator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="<<ADMIN NAME>>" />
+                    android:text="@string/administrator" />
             </LinearLayout>
 
             <Space
@@ -72,20 +72,40 @@
                     android:id="@+id/clinicTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Clinic Name: " />
+                    android:text="@string/clinicTxt" />
 
                 <TextView
                     android:id="@+id/clinic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="<<CLINIC NAME>>" />
+                    android:text="@string/clinic" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <Button
+            android:id="@+id/manageEmployees"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="@string/manageEmployees" />
+
+        <Button
+            android:id="@+id/manClinicServices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manClinicServices" />
+
+        <Button
+            android:id="@+id/records"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/records" />
+
+        <Button
+            android:id="@+id/registeredPatients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registeredPatients" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
