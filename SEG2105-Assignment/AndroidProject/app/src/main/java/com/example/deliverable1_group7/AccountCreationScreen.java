@@ -17,7 +17,7 @@ public class AccountCreationScreen extends AppCompatActivity {
     EditText gUser, gEmail, gPass;
     String username, role;
     Spinner dropdownMenu;
-
+    int usertype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class AccountCreationScreen extends AppCompatActivity {
         setContentView(R.layout.activity_account_creation_screen);
 
         //get spinner from xml
-        dropdownMenu = (Spinner) findViewById(R.id.spinner1);
+        dropdownMenu = findViewById(R.id.spinner1);
 
         //create a list of items for the user to select from
         String[] items = new String[]{"Employee", "Patient"};
@@ -37,19 +37,26 @@ public class AccountCreationScreen extends AppCompatActivity {
     }
 
 
+    public int getUserType(){
+        return this.usertype;
+    }
+
+
     public void OnCreateAccount(View view){
         //Application Context and Activity
 
-        gUser = (EditText)findViewById(R.id.usernameLogin);
-        gEmail = (EditText)findViewById(R.id.emailLogin);
-        gPass = (EditText)findViewById(R.id.passwordLogin);
+        gUser = findViewById(R.id.usernameLogin);
+        gEmail = findViewById(R.id.emailLogin);
+        gPass = findViewById(R.id.passwordLogin);
 
         String type = dropdownMenu.getSelectedItem().toString();
         int userType;
         if (type == "Employee"){
             userType = 1;
+            this.usertype = 1;
         } else {
             userType = 2;
+            this.usertype = 2;
         }
 
 
@@ -64,13 +71,20 @@ public class AccountCreationScreen extends AppCompatActivity {
      //   newUser.putExtra("currentUser", (Serializable) createUser);
 
 
+
         Intent intent2 = new Intent(AccountCreationScreen.this, WelcomeScreen.class);
         username = gUser.getText().toString();
         role = type;
         intent2.putExtra("username", username);
         intent2.putExtra("role",type);
         startActivity(intent2);
-        finish();
+
+
+        AccountFirebase pq = new AccountFirebase();
+        pq.addAccount();
+//        finish();
+
+
 
         //startActivityForResult(intent2,0);
     }
