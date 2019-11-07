@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -18,7 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class CreateAccount extends AppCompatActivity implements View.OnClickListener{
+public class CreateAccount extends AppCompatActivity  implements View.OnClickListener{
 
     private EditText username;
     private EditText useremail;
@@ -30,11 +32,18 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth firebaseauth;
     private ProgressBar progress;
 
+    String type[] = new String[]{"Employee", "Patient"};
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+
+        usertype = (Spinner) findViewById(R.id.usertype);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,type);
+        usertype.setAdapter(adapter);
+
 
         firebaseauth = FirebaseAuth.getInstance();
         progress = new ProgressBar(this);
@@ -42,7 +51,6 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         username = (EditText) findViewById(R.id.username);
         useremail = (EditText) findViewById(R.id.useremail);
         userpassword = (EditText) findViewById(R.id.userpassword);
-        usertype = (Spinner) findViewById(R.id.usertype);
         register = (Button) findViewById(R.id.createAccount);
         login = (Button) findViewById(R.id.login);
 
