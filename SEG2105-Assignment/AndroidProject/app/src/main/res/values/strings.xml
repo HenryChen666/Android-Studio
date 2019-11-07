@@ -12,5 +12,17 @@
     <string name="emailHint">(Enter your email)</string>
     <string name="emailView">Email</string>
 
+    <!-- Strings from activity_admin -->
+    <string name="clinicAdmin">Clinic Administration</string>
+    <string name="adTxt">Administrator Name:&#160;</string>
+    <string name="clinicTxt">Clinic Name:&#160;</string>
+    <string name="manageEmployees">Manage Employees</string>
+    <string name="manClinicServices">Manage Clinic Services</string>
+    <string name="records">Records</string>
+    <string name="registeredPatients">Registered Patients</string>
+    <string name="clinic">(CLINIC NAME)</string>
+    <string name="administrator">(ADMINISTRATOR)</string>
+
+
 
 </resources>
