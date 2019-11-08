@@ -86,25 +86,25 @@
         <Button
             android:id="@+id/manageEmployees"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100sp"
             android:text="@string/manageEmployees" />
 
         <Button
             android:id="@+id/manClinicServices"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100sp"
             android:text="@string/manClinicServices" />
 
         <Button
             android:id="@+id/records"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100sp"
             android:text="@string/records" />
 
         <Button
             android:id="@+id/registeredPatients"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100sp"
             android:text="@string/registeredPatients" />
 
     </LinearLayout>

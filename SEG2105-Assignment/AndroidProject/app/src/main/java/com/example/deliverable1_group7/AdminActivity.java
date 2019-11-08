@@ -13,7 +13,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        TextView textView = (TextView)findViewById(R.id.adTxt);
+        //TextView textView = (TextView)findViewById(R.id.adTxt);
     }
     //public RecyclerView.LayoutManager();
 }
