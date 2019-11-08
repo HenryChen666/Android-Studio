@@ -124,6 +124,9 @@ public class service_creation extends AppCompatActivity {
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateProduct);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteProduct);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, employees);
+        editSpinner.setAdapter(adapter);
+
 
 
         dialogBuilder.setTitle(serviceName);
