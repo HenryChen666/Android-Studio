@@ -31,7 +31,7 @@
     <string name="registeredPatients">Registered Patients</string>
     <string name="clinic">(CLINIC NAME)</string>
     <string name="administrator">(ADMINISTRATOR)</string>
-
+    <string name="serviceHeader">Services</string>
 
 
 </resources>
