@@ -74,7 +74,6 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
 
 
 
-       ///////////////////////////////////////////////////////////////////////
 
         serviceButton = (Button) findViewById(R.id.serviceButton);
 
@@ -95,7 +94,6 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
 
     }
 
-    //////////////////////////////////////////////////////////////////////////////
 
     public void AlreadyRegister(View view){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
