@@ -37,6 +37,8 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
 
     String welcomename, welcometype;
 
+    String checkemail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"; // Email Pattern
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +79,13 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         String password = userpassword.getText().toString().trim();
         final String type = usertype.getSelectedItem().toString().trim();
 
-        if (TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
             Toast.makeText(this, "Please fill all the Required information", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        if (!email.matches(checkemail)){
+            Toast.makeText(this, "Please enter an valid email address", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -86,6 +93,8 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
             Toast.makeText(this, "password should be at least 6 characters long", Toast.LENGTH_SHORT).show();
             return;
         }
+
+
 
 
         progress.setVisibility(View.VISIBLE);
