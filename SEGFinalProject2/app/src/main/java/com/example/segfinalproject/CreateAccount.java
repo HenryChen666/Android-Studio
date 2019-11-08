@@ -20,6 +20,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class CreateAccount extends AppCompatActivity  implements View.OnClickListener{
 
     private EditText username;
@@ -34,6 +40,10 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
 
     String type[] = new String[]{"Employee", "Patient"};
     ArrayAdapter<String> adapter;
+
+    String welcomename, welcometype;
+
+    String checkemail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"; // Email Pattern
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,22 +65,33 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         login = (Button) findViewById(R.id.login);
 
         register.setOnClickListener(this);
-        login.setOnClickListener(this);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlreadyRegister();
+            }
+        });
     }
 
-    public void AlreadyRegister(View view){
+    public void AlreadyRegister(){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivityForResult(intent,0);
+        startActivity(intent);
     }
 
     private void signupUser(){
-        String name = username.getText().toString().trim();
-        String email = useremail.getText().toString().trim();
+        final String name = username.getText().toString().trim();
+        final String email = useremail.getText().toString().trim();
         String password = userpassword.getText().toString().trim();
-//        String type = usertype.getSelectedItem().toString().trim();
+        final String type = usertype.getSelectedItem().toString().trim();
 
-        if (TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
             Toast.makeText(this, "Please fill all the Required information", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!email.matches(checkemail)){
+            Toast.makeText(this, "Please enter an valid email address", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -79,15 +100,32 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
             return;
         }
 
+
+
+
         progress.setVisibility(View.VISIBLE);
 
         firebaseauth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progress.setVisibility(View.GONE);
+                        //progress.setVisibility(View.GONE);
                         if (task.isSuccessful()){
-                            Toast.makeText(CreateAccount.this,"Register Successful",Toast.LENGTH_SHORT).show();
+                            User user = new User(name, email,type);
+                           // Toast.makeText(CreateAccount.this,"Authentication Successful",Toast.LENGTH_SHORT).show();
+                            FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(CreateAccount.this,"Register Successful",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            Intent intentwelcome = new Intent(getApplicationContext(), Welcomepage.class);
+                            welcomename = name;
+                            welcometype = type;
+                            intentwelcome.putExtra("Name",welcomename);
+                            intentwelcome.putExtra("Type",welcometype);
+                            startActivity(intentwelcome);
+
                         }else{
                             Toast.makeText(CreateAccount.this,"Register Unsuccessful, Please Try again",Toast.LENGTH_SHORT).show();
                         }
@@ -101,4 +139,5 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
             signupUser();
         }
     }
+
 }
