@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:gravity="clip_horizontal|center"
-                android:hint="Enter your Username"
+                android:hint="Enter your Email address"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Username"
+                android:text="Email Address"
                 android:textSize="18sp" />
 
             <LinearLayout
