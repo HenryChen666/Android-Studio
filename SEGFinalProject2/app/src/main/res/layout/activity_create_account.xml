@@ -137,6 +137,7 @@
                 android:id="@+id/serviceButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="ServiceMenu"
                 android:text="@string/ServicesListText" />
 
         </LinearLayout>

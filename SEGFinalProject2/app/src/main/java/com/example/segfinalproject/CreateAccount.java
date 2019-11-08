@@ -61,6 +61,7 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         userpassword = (EditText) findViewById(R.id.userpassword);
         register = (Button) findViewById(R.id.createAccount);
         login = (Button) findViewById(R.id.login);
+        serviceButton = (Button) findViewById(R.id.serviceButton);
 
         register.setOnClickListener(this);
 
@@ -73,9 +74,6 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
 
 
 
-
-
-        serviceButton = (Button) findViewById(R.id.serviceButton);
 
         serviceButton.setOnClickListener(new View.OnClickListener() {
             @Override

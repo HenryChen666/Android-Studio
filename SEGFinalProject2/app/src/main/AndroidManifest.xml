@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Welcomepage"></activity>
+        <activity android:name=".service_creation"></activity>
         <activity android:name=".CreateAccount" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
