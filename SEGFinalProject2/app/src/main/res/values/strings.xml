@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SEGFinalProject</string>
+    <string name="ServiceHint">Enter a Service Name</string>
+    <string name="ServiceNameText">Service Name</string>
+    <string name="addServiceButton">ADD</string>
+    <string name="employeeText">Choose and Employee</string>
+    <string name="ServicesListText">Current Services:</string>
+    <string name="ServiceNamePopup">Enter Updated Service Name</string>
+    <string name="createServiceText">Create Service</string>
 </resources>

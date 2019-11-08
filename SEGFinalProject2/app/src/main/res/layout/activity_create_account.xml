@@ -113,7 +113,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/createAccount"
@@ -127,10 +127,16 @@
 
             <Button
                 android:id="@+id/login"
-                android:onClick="AlreadyRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Already Register? Login" />
+                android:onClick="AlreadyRegister"
+                android:text="Already Registered? Login" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ServicesListText" />
 
         </LinearLayout>
 

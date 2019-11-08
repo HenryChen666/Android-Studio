@@ -69,12 +69,13 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlreadyRegister();
+                AlreadyRegister(v);
             }
         });
+
     }
 
-    public void AlreadyRegister(){
+    public void AlreadyRegister(View view){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }
