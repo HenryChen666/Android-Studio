@@ -20,6 +20,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class CreateAccount extends AppCompatActivity  implements View.OnClickListener{
 
     private EditText username;
@@ -83,7 +89,7 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
             Toast.makeText(this, "Please fill all the Required information", Toast.LENGTH_SHORT).show();
             return;
         }
-        
+
         if (!email.matches(checkemail)){
             Toast.makeText(this, "Please enter an valid email address", Toast.LENGTH_SHORT).show();
             return;
@@ -103,10 +109,16 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progress.setVisibility(View.GONE);
+                        //progress.setVisibility(View.GONE);
                         if (task.isSuccessful()){
-                            Toast.makeText(CreateAccount.this,"Register Successful",Toast.LENGTH_SHORT).show();
                             User user = new User(name, email,type);
+                           // Toast.makeText(CreateAccount.this,"Authentication Successful",Toast.LENGTH_SHORT).show();
+                            FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(CreateAccount.this,"Register Successful",Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             Intent intentwelcome = new Intent(getApplicationContext(), Welcomepage.class);
                             welcomename = name;
                             welcometype = type;
