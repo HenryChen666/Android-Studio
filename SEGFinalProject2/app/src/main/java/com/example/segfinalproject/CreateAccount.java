@@ -36,7 +36,6 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
     private Button login;
 
     private FirebaseAuth firebaseauth;
-    private ProgressBar progress;
 
     String type[] = new String[]{"Employee", "Patient"};
     ArrayAdapter<String> adapter;
@@ -56,7 +55,6 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
 
 
         firebaseauth = FirebaseAuth.getInstance();
-        progress = new ProgressBar(this);
 
         username = (EditText) findViewById(R.id.username);
         useremail = (EditText) findViewById(R.id.useremail);
@@ -104,13 +102,10 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
 
 
 
-        progress.setVisibility(View.VISIBLE);
-
         firebaseauth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        //progress.setVisibility(View.GONE);
                         if (task.isSuccessful()){
                             User user = new User(name, email,type);
                            // Toast.makeText(CreateAccount.this,"Authentication Successful",Toast.LENGTH_SHORT).show();
