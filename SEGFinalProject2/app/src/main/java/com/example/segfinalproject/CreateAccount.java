@@ -35,6 +35,8 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
     String type[] = new String[]{"Employee", "Patient"};
     ArrayAdapter<String> adapter;
 
+    String welcomename, welcometype;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,19 +57,25 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         login = (Button) findViewById(R.id.login);
 
         register.setOnClickListener(this);
-        login.setOnClickListener(this);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlreadyRegister();
+            }
+        });
     }
 
-    public void AlreadyRegister(View view){
+    public void AlreadyRegister(){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivityForResult(intent,0);
+        startActivity(intent);
     }
 
     private void signupUser(){
-        String name = username.getText().toString().trim();
-        String email = useremail.getText().toString().trim();
+        final String name = username.getText().toString().trim();
+        final String email = useremail.getText().toString().trim();
         String password = userpassword.getText().toString().trim();
-//        String type = usertype.getSelectedItem().toString().trim();
+        final String type = usertype.getSelectedItem().toString().trim();
 
         if (TextUtils.isEmpty(name)){
             Toast.makeText(this, "Please fill all the Required information", Toast.LENGTH_SHORT).show();
@@ -79,6 +87,7 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
             return;
         }
 
+
         progress.setVisibility(View.VISIBLE);
 
         firebaseauth.createUserWithEmailAndPassword(email, password)
@@ -88,6 +97,14 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
                         progress.setVisibility(View.GONE);
                         if (task.isSuccessful()){
                             Toast.makeText(CreateAccount.this,"Register Successful",Toast.LENGTH_SHORT).show();
+                            User user = new User(name, email,type);
+                            Intent intentwelcome = new Intent(getApplicationContext(), Welcomepage.class);
+                            welcomename = name;
+                            welcometype = type;
+                            intentwelcome.putExtra("Name",welcomename);
+                            intentwelcome.putExtra("Type",welcometype);
+                            startActivity(intentwelcome);
+
                         }else{
                             Toast.makeText(CreateAccount.this,"Register Unsuccessful, Please Try again",Toast.LENGTH_SHORT).show();
                         }
@@ -101,4 +118,5 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
             signupUser();
         }
     }
+
 }
