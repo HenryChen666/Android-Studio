@@ -80,8 +80,7 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         serviceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), service_creation.class);
-                startActivity(intent);
+                ServiceMenu(view);
             }
         });
 
