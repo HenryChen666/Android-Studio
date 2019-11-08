@@ -15,6 +15,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.EventListener;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -25,6 +33,12 @@ public class MainActivity extends AppCompatActivity{
 
     private FirebaseAuth firebaseauth;
 
+    DatabaseReference userref;
+    String currentuserID;
+
+    private String username;
+    private String usertype;
+    String welcomename, welcometype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +50,24 @@ public class MainActivity extends AppCompatActivity{
         userpassword = (EditText) findViewById(R.id.userpasswordlogin);
         login = (Button) findViewById(R.id.mainlogin);
         signup = (Button) findViewById(R.id.createAccountBtn);
+
+        FirebaseUser user = firebaseauth.getCurrentUser();
+        currentuserID = user.getUid();
+        userref = FirebaseDatabase.getInstance().getReference();
+
+
+        userref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                showData(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +84,18 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
+    }
+
+    private void showData(DataSnapshot datasnapshot){
+        for(DataSnapshot postSnapshot: datasnapshot.getChildren()){
+            User userinformation = new User();
+            userinformation.setEmail(postSnapshot.child(currentuserID).getValue(User.class).getEmail());
+            userinformation.setName(postSnapshot.child(currentuserID).getValue(User.class).getName());
+            userinformation.setUsertype(postSnapshot.child(currentuserID).getValue(User.class).getUsertype());
+
+            username = userinformation.getName();
+            usertype = userinformation.getUsertype();
+        }
     }
 
     private void loginuser(){
@@ -72,6 +116,12 @@ public class MainActivity extends AppCompatActivity{
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                     Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                Intent intentwelcome = new Intent(getApplicationContext(), Welcomepage.class);
+                welcomename = username;
+                welcometype = usertype;
+                intentwelcome.putExtra("Name",welcomename);
+                intentwelcome.putExtra("Type",welcometype);
+                startActivity(intentwelcome);
             }
         });
     }
