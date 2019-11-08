@@ -33,12 +33,6 @@ public class MainActivity extends AppCompatActivity{
 
     private FirebaseAuth firebaseauth;
 
-    DatabaseReference userref;
-    String currentuserID;
-
-    private String username;
-    private String usertype;
-    String welcomename, welcometype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +44,6 @@ public class MainActivity extends AppCompatActivity{
         userpassword = (EditText) findViewById(R.id.userpasswordlogin);
         login = (Button) findViewById(R.id.mainlogin);
         signup = (Button) findViewById(R.id.createAccountBtn);
-
-        FirebaseUser user = firebaseauth.getCurrentUser();
-        currentuserID = user.getUid();
-        userref = FirebaseDatabase.getInstance().getReference();
-
-
-        userref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -86,18 +63,6 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    private void showData(DataSnapshot datasnapshot){
-        for(DataSnapshot postSnapshot: datasnapshot.getChildren()){
-            User userinformation = new User();
-            userinformation.setEmail(postSnapshot.child(currentuserID).getValue(User.class).getEmail());
-            userinformation.setName(postSnapshot.child(currentuserID).getValue(User.class).getName());
-            userinformation.setUsertype(postSnapshot.child(currentuserID).getValue(User.class).getUsertype());
-
-            username = userinformation.getName();
-            usertype = userinformation.getUsertype();
-        }
-    }
-
     private void loginuser(){
         String email = useremail.getText().toString().trim();
         String password = userpassword.getText().toString().trim();
@@ -114,14 +79,13 @@ public class MainActivity extends AppCompatActivity{
         firebaseauth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful())
+                if (task.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                Intent intentwelcome = new Intent(getApplicationContext(), Welcomepage.class);
-                welcomename = username;
-                welcometype = usertype;
-                intentwelcome.putExtra("Name",welcomename);
-                intentwelcome.putExtra("Type",welcometype);
-                startActivity(intentwelcome);
+                    Intent intentwelcome = new Intent(getApplicationContext(), loginwelcomepage.class);
+                    startActivity(intentwelcome);
+                }else{
+                    Toast.makeText(MainActivity.this, "Login Unsuccessful, Please check your Email and Password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
