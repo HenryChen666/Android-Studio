@@ -11,7 +11,15 @@
     <string name="createTitle">Create Account</string>
     <string name="emailHint">(Enter your email)</string>
     <string name="emailView">Email</string>
-
+    <string name="serviceCreate">Create Service</string>
+    <string name="serviceName">Please enter the name of the new service</string>
+    <string name="serviceNameString">Serivce Name</string>
+    <string name="employeeMenuString">Choose an employee to run the service</string>
+    <string name="addServiceButton">ADD</string>
+    <string name="servicesHere">Current Services:</string>
+    <string name="updateNameHint">Enter Service Name (update)</string>
+    <string name="aaa">Service Name</string>
+    <string name="serviceNameHint">Enter a Service Name</string>
 
 
 </resources>

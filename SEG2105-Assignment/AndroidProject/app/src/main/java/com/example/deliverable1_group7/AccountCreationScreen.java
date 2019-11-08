@@ -89,5 +89,11 @@ public class AccountCreationScreen extends AppCompatActivity {
 
         //startActivityForResult(intent2,0);
     }
+
+    public void onButton(View view){
+
+        Intent intent = new Intent(getApplicationContext(), service_creation.class);
+        startActivityForResult(intent,0);
+    }
 }
 
