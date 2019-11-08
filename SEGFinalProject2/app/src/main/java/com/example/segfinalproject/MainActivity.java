@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        useremail = ();
+        //useremail = ();
     }
 
     public void OnEnter(View view) {
@@ -29,5 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Application Context and Activity
         Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
         startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

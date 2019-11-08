@@ -127,16 +127,14 @@
 
             <Button
                 android:id="@+id/login"
-<<<<<<< HEAD
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="AlreadyRegister"
                 android:text="Already Registered? Login" />
 
             <Button
-                android:id="@+id/button"
-=======
->>>>>>> facb5bff38b70690ee68ad2f3e30cc6825f862b9
+                android:id="@+id/serviceButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ServicesListText" />

@@ -32,7 +32,7 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
     private EditText useremail;
     private EditText userpassword;
     private Spinner usertype;
-    private Button register;
+    private Button register, serviceButton;
     private Button login;
 
     private FirebaseAuth firebaseauth;
@@ -71,7 +71,31 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
             }
         });
 
+
+
+
+       ///////////////////////////////////////////////////////////////////////
+
+        serviceButton = (Button) findViewById(R.id.serviceButton);
+
+        serviceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), service_creation.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
+    public void ServiceMenu(View view){
+
+        Intent intent = new Intent(getApplicationContext(), service_creation.class);
+        startActivity(intent);
+
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
 
     public void AlreadyRegister(View view){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
