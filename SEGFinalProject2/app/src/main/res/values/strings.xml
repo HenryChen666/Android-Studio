@@ -16,4 +16,5 @@
     <string name="manageEmployeesTxt">Manage Employees</string>
     <string name="manClinicServicesTxt">Manage Clinic Services</string>
     <string name="regPatients">Registered Patients</string>
+    <string name="employeeListTxt" >Current Employees (hold to delete)</string>
 </resources>
