@@ -15,7 +15,6 @@
         <activity android:name=".appointment_creation" />
         <activity android:name=".AdminActivity"></activity>
         <activity android:name=".ClinicServices"></activity>
-        <activity android:name=".AdminActivity" />
         <activity android:name=".AccountCreationScreen" />
         <activity android:name=".WelcomeScreen" />
         <activity android:name=".MainActivity">

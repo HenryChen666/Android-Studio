@@ -127,8 +127,6 @@ public class service_creation extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, employees);
         editSpinner.setAdapter(adapter);
 
-
-
         dialogBuilder.setTitle(serviceName);
         final AlertDialog b = dialogBuilder.create();
         b.show();

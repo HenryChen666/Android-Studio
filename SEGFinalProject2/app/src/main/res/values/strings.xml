@@ -7,4 +7,13 @@
     <string name="ServicesListText">Current Services:</string>
     <string name="ServiceNamePopup">Enter Updated Service Name</string>
     <string name="createServiceText">Create Service</string>
+    <string name="clinicAdmin">Clinic Admin Menu</string>
+    <string name="clinicAdminText">Clinic Administration Menu</string>
+    <string name="adTxt">Administrator Name:</string>
+    <string name="adminNameTxt">(ADMINISTRATOR)</string>
+    <string name="clinicNameTxt">Clinic Name:</string>
+    <string name="clinicName">(CLINIC NAME)</string>
+    <string name="manageEmployeesTxt">Manage Employees</string>
+    <string name="manClinicServicesTxt">Manage Clinic Services</string>
+    <string name="regPatients">Registered Patients</string>
 </resources>

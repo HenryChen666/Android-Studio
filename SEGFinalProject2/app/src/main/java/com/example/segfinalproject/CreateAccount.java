@@ -32,7 +32,7 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
     private EditText useremail;
     private EditText userpassword;
     private Spinner usertype;
-    private Button register, serviceButton;
+    private Button register;
     private Button login;
 
     private FirebaseAuth firebaseauth;
@@ -61,7 +61,6 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         userpassword = (EditText) findViewById(R.id.userpassword);
         register = (Button) findViewById(R.id.createAccount);
         login = (Button) findViewById(R.id.login);
-        serviceButton = (Button) findViewById(R.id.serviceButton);
 
         register.setOnClickListener(this);
 
@@ -73,21 +72,6 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         });
 
 
-
-
-        serviceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ServiceMenu(view);
-            }
-        });
-
-    }
-
-    public void ServiceMenu(View view){
-
-        Intent intent = new Intent(getApplicationContext(), service_creation.class);
-        startActivity(intent);
 
     }
 
@@ -104,17 +88,17 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
         final String type = usertype.getSelectedItem().toString().trim();
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Please fill all the Required information", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter all information", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!email.matches(checkemail)){
-            Toast.makeText(this, "Please enter an valid email address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (password.length()<6){
-            Toast.makeText(this, "password should be at least 6 characters long", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password should be at least 6 characters long", Toast.LENGTH_SHORT).show();
             return;
         }
 

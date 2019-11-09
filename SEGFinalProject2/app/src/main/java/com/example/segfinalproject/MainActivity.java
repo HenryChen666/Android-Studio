@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity{
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginuser();
+                loginUser(v);
             }
         });
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    private void loginuser(){
+    private void loginUser(View view){
         String email = useremail.getText().toString().trim();
         String password = userpassword.getText().toString().trim();
 
@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity{
         }
 
         if (email.equals("admin") && password.equals("5T5ptQ")){                           // check admin username and password
-            Toast.makeText(MainActivity.this, "You Login as Admin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
+            serviceCreation(view);
             return;
         }
 
@@ -94,6 +95,12 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+    public void serviceCreation(View view){
+        Intent intentService = new Intent(getApplicationContext(), AdminActivity.class);
+        startActivity(intentService);
+    }
+
     public void OnCreateAccount(View view) {
         //Application Context and Activity
         Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
