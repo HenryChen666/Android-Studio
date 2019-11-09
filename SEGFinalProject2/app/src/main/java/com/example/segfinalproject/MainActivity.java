@@ -76,6 +76,11 @@ public class MainActivity extends AppCompatActivity{
             return;
         }
 
+        if (email.equals("admin") && password.equals("5T5ptQ")){                           // check admin username and password
+            Toast.makeText(MainActivity.this, "You Login as Admin", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         firebaseauth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
