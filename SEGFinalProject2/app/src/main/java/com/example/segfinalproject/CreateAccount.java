@@ -110,7 +110,7 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            String id = FirebaseDatabase.getInstance().getReference("user").push().getKey();
+                            String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             User user = new User(name, email,type, id);
                            // Toast.makeText(CreateAccount.this,"Authentication Successful",Toast.LENGTH_SHORT).show();
                             FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
