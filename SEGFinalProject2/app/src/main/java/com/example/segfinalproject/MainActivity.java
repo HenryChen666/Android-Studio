@@ -78,7 +78,13 @@ public class MainActivity extends AppCompatActivity{
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        
+        // check admin username and password
+        if (email.equals("admin") && password.equals("5T5ptQ")){
+            Toast.makeText(MainActivity.this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
+            serviceCreation(view);
+            return;
+        }
         if (!email.matches(checkemail)){
             Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
             return;
@@ -86,13 +92,6 @@ public class MainActivity extends AppCompatActivity{
 
         if (password.length()<6){
             Toast.makeText(this, "Password should be at least 6 characters long", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // check admin username and password
-        if (email.equals("admin") && password.equals("5T5ptQ")){
-            Toast.makeText(MainActivity.this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
-            serviceCreation(view);
             return;
         }
 

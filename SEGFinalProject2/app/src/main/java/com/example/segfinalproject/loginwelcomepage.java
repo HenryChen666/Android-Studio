@@ -84,5 +84,4 @@ public class loginwelcomepage extends AppCompatActivity {
             startActivity(intentwelcome);
         }
     }
-
 }
