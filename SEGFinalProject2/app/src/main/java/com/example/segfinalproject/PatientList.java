@@ -1,8 +1,10 @@
 package com.example.segfinalproject;
 
+import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.renderscript.Sampler;
@@ -27,34 +29,37 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeList extends AppCompatActivity {
+public class PatientList extends AppCompatActivity {
 
-    ListView employeeListView;
-    DatabaseReference databaseEmployees;
-    private FirebaseDatabase firebasedatabase;
-    List<User> employees;
+    ListView patientListView;
+    DatabaseReference databasePatients;
+    private FirebaseDatabase firebaseDataBase;
+    List<User> patients;
+    EmployeeList eList = new EmployeeList();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
 
-        databaseEmployees = FirebaseDatabase.getInstance().getReference("User");
-        firebasedatabase = FirebaseDatabase.getInstance();
+        databasePatients = FirebaseDatabase.getInstance().getReference("User");
+        firebaseDataBase = FirebaseDatabase.getInstance();
+
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.employee_list_view);
+        setContentView(R.layout.patient_list_view);
 
-        employeeListView = (ListView) findViewById(R.id.employeeListView);
+        patientListView = (ListView) findViewById(R.id.patientListView);
 
-        employees = new ArrayList<>();
+        patients = new ArrayList<>();
 
-        employeeListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        patientListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                User employee = employees.get(i);
-                showUpdateDeleteDialog(employee.getEmail(), employee.getName(), employee.getId());
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                User patient = patients.get(position);
+                showUpdateDeleteDialog(patient.getEmail(), patient.getName(), patient.getId());
                 return true;
             }
         });
+
     }
 
     @Override
@@ -62,24 +67,25 @@ public class EmployeeList extends AppCompatActivity {
 
         super.onStart();
 
-        databaseEmployees.addValueEventListener(new ValueEventListener() {
+        databasePatients.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                employees.clear();
+                patients.clear();
 
                 for(DataSnapshot post: dataSnapshot.getChildren()){
 
-                    User employee = post.getValue(User.class);
+                    User patient = post.getValue(User.class);
 
-                    if(employee.getUsertype().equals("Employee")) {
-                        employees.add(employee);
+                    if(patient.getUsertype().equals("Patient")){
+                        patients.add(patient);
                     }
 
                 }
 
-                UserList employeeAdapter = new UserList(EmployeeList.this, employees);
-                employeeListView.setAdapter(employeeAdapter);
+                UserList patientAdapter = new UserList(PatientList.this, patients);
+                patientListView.setAdapter(patientAdapter);
+
             }
 
             @Override
@@ -87,8 +93,8 @@ public class EmployeeList extends AppCompatActivity {
 
             }
         });
-
     }
+
 
     private void showUpdateDeleteDialog(final String email, final String name, final String id){
 
@@ -129,33 +135,9 @@ public class EmployeeList extends AppCompatActivity {
 
     }
 
-    private boolean deleteUser(String id, String email){
-//        DatabaseReference databasereference = firebasedatabase.getReference("User");
-//        String useremail = ; // find out the user email that we click
-//
-//        Query query = databasereference.orderByChild("email").equalTo(usermeail);
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot ds : dataSnapshot.getChildren()){
-//                    String uid = "" +  ds.child("id").getValue();
-//                    try {
-//                        FirebaseAuth.getInstance().deleteUser(uid);
-//                    } catch (FirebaseAuthException e) {
-//                        e.printStackTrace();
-//                    }
-//                    Toast.makeText(getApplicationContext(), "Employee Deleted", Toast.LENGTH_LONG).show();
-//                    return true;
-//            }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-        Toast.makeText(getApplicationContext(), "Employee Deleted", Toast.LENGTH_LONG).show();
+    private boolean deleteUser(final String id, final String email){
+        Toast.makeText(getApplicationContext(), "Patient Deleted", Toast.LENGTH_LONG).show();
         return true;
     }
-
 }
+

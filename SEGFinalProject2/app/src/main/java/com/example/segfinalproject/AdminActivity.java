@@ -32,6 +32,13 @@ public class AdminActivity extends AppCompatActivity {
                 EmployeeList(view);
             }
         });
+
+        managePatients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PatientList(view);
+            }
+        });
     }
 
     public void ServiceMenu(View view){
@@ -43,6 +50,11 @@ public class AdminActivity extends AppCompatActivity {
 
     public void EmployeeList(View view){
         Intent intent = new Intent(getApplicationContext(), EmployeeList.class);
+        startActivity(intent);
+    }
+
+    public void PatientList(View view){
+        Intent intent = new Intent(getApplicationContext(), PatientList.class);
         startActivity(intent);
     }
 }

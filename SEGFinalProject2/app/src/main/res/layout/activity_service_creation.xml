@@ -8,14 +8,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="500dp"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -70,9 +67,10 @@
             android:id="@+id/addButton"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:onClick="addService"
             android:text="@string/addServiceButton" />
-
     </LinearLayout>
 
     <LinearLayout
