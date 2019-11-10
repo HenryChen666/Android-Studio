@@ -1,6 +1,5 @@
 package com.example.segfinalproject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -26,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class service_creation extends AppCompatActivity {
+public class ServiceCreation extends AppCompatActivity {
 
 
     Spinner employeeMenu;
@@ -100,7 +99,7 @@ public class service_creation extends AppCompatActivity {
 
                 }
 
-                ServiceList servicesAdapter = new ServiceList(service_creation.this, services);
+                ServiceList servicesAdapter = new ServiceList(ServiceCreation.this, services);
                 serviceList.setAdapter(servicesAdapter);
 
             }

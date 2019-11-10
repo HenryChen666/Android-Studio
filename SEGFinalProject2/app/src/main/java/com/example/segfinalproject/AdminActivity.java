@@ -26,12 +26,23 @@ public class AdminActivity extends AppCompatActivity {
                 ServiceMenu(view);
             }
         });
+        manageEmployees.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EmployeeList(view);
+            }
+        });
     }
 
     public void ServiceMenu(View view){
 
-        Intent intent = new Intent(getApplicationContext(), service_creation.class);
+        Intent intent = new Intent(getApplicationContext(), ServiceCreation.class);
         startActivity(intent);
 
+    }
+
+    public void EmployeeList(View view){
+        Intent intent = new Intent(getApplicationContext(), EmployeeList.class);
+        startActivity(intent);
     }
 }

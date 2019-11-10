@@ -12,7 +12,7 @@
         <activity android:name=".EmployeeList"></activity>
         <activity android:name=".loginwelcomepage" />
         <activity android:name=".Welcomepage" />
-        <activity android:name=".service_creation" />
+        <activity android:name=".ServiceCreation" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".CreateAccount" />
         <activity android:name=".MainActivity">

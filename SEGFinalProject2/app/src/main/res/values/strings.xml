@@ -17,4 +17,6 @@
     <string name="manClinicServicesTxt">Manage Clinic Services</string>
     <string name="regPatients">Registered Patients</string>
     <string name="employeeListTxt" >Current Employees (hold to delete)</string>
+    <string name="deleteUserBtn">Delete User</string>
+    <string name="backButton">Back</string>
 </resources>
