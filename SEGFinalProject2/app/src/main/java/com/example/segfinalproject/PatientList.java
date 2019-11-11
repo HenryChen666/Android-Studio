@@ -138,10 +138,13 @@ public class PatientList extends AppCompatActivity {
 
     private boolean deleteUser(final String id, String email, final String password){
 
+        String pass = password;
+        String mail = email;
+
         DatabaseReference dr = FirebaseDatabase.getInstance().getReference("User").child(id);
         dr.removeValue();
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(mail, pass);
         FirebaseAuth.getInstance().getCurrentUser().delete();
 
         Toast.makeText(getApplicationContext(), "Patient Deleted", Toast.LENGTH_LONG).show();

@@ -28,6 +28,8 @@ public class loginwelcomepage extends AppCompatActivity {
     private FirebaseDatabase firebasedatabase;
     FirebaseUser user;
 
+    DatabaseReference dr;
+
 
 
 
@@ -42,6 +44,9 @@ public class loginwelcomepage extends AppCompatActivity {
         firebaseauth = FirebaseAuth.getInstance();
         firebasedatabase = FirebaseDatabase.getInstance();
         user = firebaseauth.getCurrentUser();
+
+
+
         DatabaseReference databasereference = firebasedatabase.getReference("User");
         Query query = databasereference.orderByChild("email").equalTo(user.getEmail());
 
