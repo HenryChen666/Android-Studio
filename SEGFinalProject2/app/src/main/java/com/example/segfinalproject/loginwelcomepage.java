@@ -71,6 +71,9 @@ public class loginwelcomepage extends AppCompatActivity {
     }
 
     public void AlreadyRegister(){
+
+        FirebaseAuth.getInstance().signOut();
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }
