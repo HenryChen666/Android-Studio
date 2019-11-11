@@ -84,7 +84,7 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
     private void signupUser(){
         final String name = username.getText().toString().trim();
         final String email = useremail.getText().toString().trim();
-        String password = userpassword.getText().toString().trim();
+        final String password = userpassword.getText().toString().trim();
         final String type = usertype.getSelectedItem().toString().trim();
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
@@ -105,13 +105,13 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
 
 
 
-        firebaseauth.createUserWithEmailAndPassword(email, password)
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            User user = new User(name, email,type, id);
+                            User user = new User(name, email,type, id, password);
                            // Toast.makeText(CreateAccount.this,"Authentication Successful",Toast.LENGTH_SHORT).show();
                             FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

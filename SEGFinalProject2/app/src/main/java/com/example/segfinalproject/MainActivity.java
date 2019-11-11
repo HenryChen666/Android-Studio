@@ -98,10 +98,15 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+
+
     public void serviceCreation(View view){
         Intent intentService = new Intent(getApplicationContext(), AdminActivity.class);
         startActivity(intentService);
+
+
     }
+
 
     public void OnCreateAccount(View view) {
         //Application Context and Activity

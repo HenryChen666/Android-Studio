@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,7 +56,7 @@ public class PatientList extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 User patient = patients.get(position);
-                showUpdateDeleteDialog(patient.getEmail(), patient.getName(), patient.getId());
+                showUpdateDeleteDialog(patient.getEmail(), patient.getName(), patient.getId(), patient.getPassword());
                 return true;
             }
         });
@@ -96,7 +97,7 @@ public class PatientList extends AppCompatActivity {
     }
 
 
-    private void showUpdateDeleteDialog(final String email, final String name, final String id){
+    private void showUpdateDeleteDialog(final String email, final String name, final String id, final String password){
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -118,7 +119,7 @@ public class PatientList extends AppCompatActivity {
 
             @Override
             public void onClick(View view){
-                deleteUser(id, email);
+                deleteUser(id, email, password);
                 b.dismiss();
             }
 
@@ -135,8 +136,16 @@ public class PatientList extends AppCompatActivity {
 
     }
 
-    private boolean deleteUser(final String id, final String email){
+    private boolean deleteUser(final String id, String email, final String password){
+
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference("User").child(id);
+        dr.removeValue();
+
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
+        FirebaseAuth.getInstance().getCurrentUser().delete();
+
         Toast.makeText(getApplicationContext(), "Patient Deleted", Toast.LENGTH_LONG).show();
+
         return true;
     }
 }

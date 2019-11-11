@@ -5,17 +5,19 @@ public class User {
     public String email;
     public String usertype;
     public String id;
+    public String password;
 
 
     public  User(){
 
     }
 
-    public User(String name, String email, String usertype, final String id) {
+    public User(String name, String email, String usertype, final String id, final String password) {
         this.name = name;
         this.email = email;
         this.usertype = usertype;
         this.id = id;
+        this.password = password;
     }
 
     public String getName() {
@@ -45,4 +47,6 @@ public class User {
     public String getId(){
         return id;
     }
+
+    public String getPassword(){ return password; }
 }

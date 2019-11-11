@@ -31,7 +31,7 @@ public class EmployeeList extends AppCompatActivity {
 
     ListView employeeListView;
     DatabaseReference databaseEmployees;
-    private FirebaseDatabase firebasedatabase;
+    FirebaseDatabase firebasedatabase;
     List<User> employees;
 
     @Override
@@ -51,7 +51,7 @@ public class EmployeeList extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 User employee = employees.get(i);
-                showUpdateDeleteDialog(employee.getEmail(), employee.getName(), employee.getId());
+                showUpdateDeleteDialog(employee.getEmail(), employee.getName(), employee.getId(), employee.getPassword());
                 return true;
             }
         });
@@ -90,7 +90,7 @@ public class EmployeeList extends AppCompatActivity {
 
     }
 
-    private void showUpdateDeleteDialog(final String email, final String name, final String id){
+    private void showUpdateDeleteDialog(final String email, final String name, final String id, final String password){
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -112,7 +112,7 @@ public class EmployeeList extends AppCompatActivity {
 
             @Override
             public void onClick(View view){
-                deleteUser(id, email);
+                deleteUser(id, email, password);
                 b.dismiss();
             }
 
@@ -129,32 +129,16 @@ public class EmployeeList extends AppCompatActivity {
 
     }
 
-    private boolean deleteUser(String id, String email){
-//        DatabaseReference databasereference = firebasedatabase.getReference("User");
-//        String useremail = ; // find out the user email that we click
-//
-//        Query query = databasereference.orderByChild("email").equalTo(usermeail);
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot ds : dataSnapshot.getChildren()){
-//                    String uid = "" +  ds.child("id").getValue();
-//                    try {
-//                        FirebaseAuth.getInstance().deleteUser(uid);
-//                    } catch (FirebaseAuthException e) {
-//                        e.printStackTrace();
-//                    }
-//                    Toast.makeText(getApplicationContext(), "Employee Deleted", Toast.LENGTH_LONG).show();
-//                    return true;
-//            }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+    private boolean deleteUser(String id, String email, String password){
+
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference("User").child(id);
+        dr.removeValue();
+
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
+        FirebaseAuth.getInstance().getCurrentUser().delete();
+
         Toast.makeText(getApplicationContext(), "Employee Deleted", Toast.LENGTH_LONG).show();
+
         return true;
     }
 
