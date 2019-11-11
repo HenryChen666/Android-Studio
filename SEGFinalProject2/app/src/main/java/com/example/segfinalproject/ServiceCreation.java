@@ -138,6 +138,8 @@ public class ServiceCreation extends AppCompatActivity {
                 if (!TextUtils.isEmpty(name)) {
                     updateService(serviceId, name, employee);
                     b.dismiss();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Enter Service Name", Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -28,10 +28,6 @@ public class loginwelcomepage extends AppCompatActivity {
     private FirebaseDatabase firebasedatabase;
     FirebaseUser user;
 
-    DatabaseReference dr;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
