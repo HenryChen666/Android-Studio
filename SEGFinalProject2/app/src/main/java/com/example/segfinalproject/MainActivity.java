@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity{
 
     private FirebaseAuth firebaseauth;
 
+    String checkemail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"; // Email Pattern
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +78,20 @@ public class MainActivity extends AppCompatActivity{
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        if (email.equals("admin") && password.equals("5T5ptQ")){                           // check admin username and password
+        
+        // check admin username and password
+        if (email.equals("admin") && password.equals("5T5ptQ")){
             Toast.makeText(MainActivity.this, "Logged in as Admin", Toast.LENGTH_SHORT).show();
             serviceCreation(view);
+            return;
+        }
+        if (!email.matches(checkemail)){
+            Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (password.length()<6){
+            Toast.makeText(this, "Password should be at least 6 characters long", Toast.LENGTH_SHORT).show();
             return;
         }
 
