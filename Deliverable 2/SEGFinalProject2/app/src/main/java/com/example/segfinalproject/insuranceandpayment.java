@@ -1,7 +1,10 @@
 package com.example.segfinalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
@@ -11,6 +14,7 @@ public class insuranceandpayment extends AppCompatActivity {
 
     private CheckBox insurance1, insurance2, insurance3;
     private CheckBox payment1, payment2, payment3;
+    private Button save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,7 @@ public class insuranceandpayment extends AppCompatActivity {
         payment1 = (CheckBox) findViewById(R.id.paymentmethod1);
         payment2 = (CheckBox) findViewById(R.id.paymentmethod2);
         payment3 = (CheckBox) findViewById(R.id.paymentmethod3);
+        save = (Button) findViewById(R.id.save);
 
         insurance1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,5 +96,28 @@ public class insuranceandpayment extends AppCompatActivity {
                 }
             }
         });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save(v);
+            }
+        });
     }
+
+    public void save(View view){
+        if (!payment1.isChecked() && !payment2.isChecked() && !payment3.isChecked()){
+            Toast.makeText(this, "Please enter at least one payment info", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!insurance1.isChecked() && !insurance2.isChecked() && !insurance3.isChecked()){
+            Toast.makeText(this, "Please enter at least one insurance info", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Toast.makeText(this, "WORKS", Toast.LENGTH_SHORT).show();
+        //@HENRY - Enter the right class you are going to send it to here
+//        Intent intentService = new Intent(getApplicationContext(), workhours.class);
+//        startActivity(intentService);
+    }
+
 }

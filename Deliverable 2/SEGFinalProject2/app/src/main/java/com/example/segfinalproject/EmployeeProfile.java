@@ -2,6 +2,7 @@ package com.example.segfinalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,6 +63,11 @@ public class EmployeeProfile extends AppCompatActivity {
     }
 
     public void workhour(View view){
+        if (TextUtils.isEmpty(addresstext.getText().toString().trim()) || TextUtils.isEmpty(phone_number.getText().toString().trim()) || TextUtils.isEmpty(clinic_name.getText().toString().trim())){
+            Toast.makeText(this, "Please enter all information", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Intent intentService = new Intent(getApplicationContext(), workhours.class);
         startActivity(intentService);
     }
@@ -73,6 +79,10 @@ public class EmployeeProfile extends AppCompatActivity {
         clinicAddress = address;
         clinicPhoneNumber = phoneNumber;
 
+        if (TextUtils.isEmpty(addresstext.getText().toString().trim()) || TextUtils.isEmpty(phone_number.getText().toString().trim()) || TextUtils.isEmpty(clinic_name.getText().toString().trim())){
+            Toast.makeText(this, "Please enter all information", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         String tempId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference clinicCheck = FirebaseDatabase.getInstance().getReference("User").child(tempId);
@@ -105,6 +115,10 @@ public class EmployeeProfile extends AppCompatActivity {
         });
     }
         public void insuranceandpayment(View view){
+            if (TextUtils.isEmpty(addresstext.getText().toString().trim()) || TextUtils.isEmpty(phone_number.getText().toString().trim()) || TextUtils.isEmpty(clinic_name.getText().toString().trim())){
+                Toast.makeText(this, "Please enter all information", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intentService = new Intent(getApplicationContext(), insuranceandpayment.class);
             startActivity(intentService);
         }
