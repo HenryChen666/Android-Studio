@@ -30,9 +30,9 @@ public class patientsloginwelcomepage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loginwelcomepage);
+        setContentView(R.layout.activity_patientsloginwelcomepage);
 
-        welcomeDisply = (TextView) findViewById(R.id.logindisplaywelcome);
+        welcomeDisply = (TextView) findViewById(R.id.logindisplay);
         mainMenu = (Button) findViewById(R.id.loginwelcome);
 
         firebaseAuth = FirebaseAuth.getInstance();
