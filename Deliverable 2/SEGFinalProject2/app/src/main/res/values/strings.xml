@@ -20,4 +20,10 @@
     <string name="deleteUserBtn">Delete User</string>
     <string name="backButton">Back</string>
     <string name="patientListViewTxt">Currently Registered Patients:</string>
+    <string name="ManageServicesTxt">Manage Your Services</string>
+    <string name="YourCurrentServices">Your Current Services: (Hold to Delete)</string>
+    <string name="AvailableServices">Available Services: (Hold to Add)</string>
+    <string name="ManageServices">Manage Services</string>
+    <string name="deleteText">Delete Service</string>
+    <string name="backText">Back</string>
 </resources>
