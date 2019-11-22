@@ -35,7 +35,7 @@ public class loginwelcomepage extends AppCompatActivity {
         welcomeDisply = (TextView) findViewById(R.id.logindisplaywelcome);
         mainMenu = (Button) findViewById(R.id.loginwelcome);
         profile = (Button) findViewById(R.id.editprofile);
-        manageServices = (Button) findViewById(R.id.manageServiesBtn);
+        manageServices = (Button) findViewById(R.id.mangeservicesbtn);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
