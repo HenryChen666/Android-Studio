@@ -13,6 +13,8 @@ public class User {
     //Only used for employee right now, holds all of the user's selected services
     public List<Service> services;
 
+    public Clinic clinic;
+
     public User(){
 
     }
@@ -65,5 +67,7 @@ public class User {
     public void setUserServices(List<Service> services){
         this.services = services;
     }
+
+    public Clinic getClinic(){return clinic;}
 
 }
