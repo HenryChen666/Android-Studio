@@ -25,13 +25,30 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Monday" />
-        <TextView
-            android:id="@+id/mondayText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Start time: ___ End time: ___"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+           >
+
+            <TextView
+                android:id="@+id/mondaystartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Start time: Not open"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/mondayendText"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="End time: Not open"
+                android:textSize="18sp" />
+    </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -43,13 +60,30 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Tuesday" />
-        <TextView
-            android:id="@+id/tuesdayText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Start time: ___ End time: ___"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/tuesdaystartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Start time: Not open"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tuesdayendText"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="End time: Not open"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -61,13 +95,30 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Wednesday" />
-        <TextView
-            android:id="@+id/wednesdayText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Start time: ___ End time: ___"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/wednesdaystartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Start time: Not open"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/wednesdayendText"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="End time: Not open"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -79,14 +130,30 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Thursday" />
-        <TextView
-            android:id="@+id/thursdayText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Start time: ___ End time: ___"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            >
 
+            <TextView
+                android:id="@+id/thursdaystartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Start time: Not open"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/thursdayendText"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="End time: Not open"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -98,13 +165,30 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Friday" />
-        <TextView
-            android:id="@+id/fridayText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Start time: ___ End time: ___"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/fridaystartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Start time: Not open"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/fridayendText"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="End time: Not open"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -116,13 +200,30 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Saturday" />
-        <TextView
-            android:id="@+id/saturdayText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Start time: ___ End time: ___"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/saturdaystartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Start time: Not open"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/saturdayendText"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="End time: Not open"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -134,14 +235,30 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Sunday" />
-        <TextView
-            android:id="@+id/sundayText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Start time: ___ End time: ___"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            >
 
+            <TextView
+                android:id="@+id/sundaystartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Start time: Not open"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/sundayendText"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="End time: Not open"
+                android:textSize="18sp" />
+        </LinearLayout>
         <Space
             android:layout_width="match_parent"
             android:layout_height="23dp" />
@@ -151,6 +268,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Set Hours" />
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
