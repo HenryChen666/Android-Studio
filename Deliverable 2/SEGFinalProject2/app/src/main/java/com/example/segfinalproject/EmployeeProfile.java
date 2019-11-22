@@ -49,7 +49,7 @@ public class EmployeeProfile extends AppCompatActivity {
         insurance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-  //              AlreadyRegister(v);
+                insuranceandpayment(v);
             }
         });
 
@@ -66,7 +66,7 @@ public class EmployeeProfile extends AppCompatActivity {
         startActivity(intentService);
     }
 
-    public void createClinic(String name, String address, String phoneNumber){
+    public void createClinic(String name, String address, String phoneNumber) {
 
         final String clinicName, clinicAddress, clinicPhoneNumber;
         clinicName = name;
@@ -80,12 +80,12 @@ public class EmployeeProfile extends AppCompatActivity {
         clinicCheck.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild("clinic")){
+                if (dataSnapshot.hasChild("clinic")) {
 
                     Toast.makeText(getApplicationContext(), "There is already a Clinic associated with this user.", Toast.LENGTH_LONG).show();
 
 
-                }else{
+                } else {
 
                     dr = FirebaseDatabase.getInstance().getReference("clinics");
                     temp = dr.push();
@@ -97,11 +97,15 @@ public class EmployeeProfile extends AppCompatActivity {
                     clinicCheck.child("clinic").setValue(temp.getKey());
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
-
-}
+        public void insuranceandpayment(View view){
+            Intent intentService = new Intent(getApplicationContext(), insuranceandpayment.class);
+            startActivity(intentService);
+        }
+    }
