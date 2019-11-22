@@ -110,17 +110,17 @@
                 android:id="@+id/workinghour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Working Hours" />
+                android:text="@string/employeeHours" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
             <Button
-                android:id="@+id/payment"
+                android:id="@+id/updateClinicButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Insurance Type / Payment methods" />
+                android:text="@string/updateClinicText" />
 
             <Space
                 android:layout_width="match_parent"
@@ -130,7 +130,7 @@
                 android:id="@+id/nextbtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Next" />
+                android:text="@string/createNewClinic" />
 
         </LinearLayout>
 

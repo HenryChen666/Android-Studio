@@ -26,4 +26,8 @@
     <string name="ManageServices">Manage Services</string>
     <string name="deleteText">Delete Service</string>
     <string name="backText">Back</string>
+    <string name="createClinic">Create New Clinic</string>
+    <string name="createNewClinic">Create Clinic</string>
+    <string name="updateClinicText">Update Current Clinic</string>
+    <string name="employeeHours">Employee Working Hours</string>
 </resources>

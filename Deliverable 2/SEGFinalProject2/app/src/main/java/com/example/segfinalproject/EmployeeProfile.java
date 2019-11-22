@@ -25,7 +25,7 @@ public class EmployeeProfile extends AppCompatActivity {
     private EditText phone_number;
     private EditText clinic_name;
     private Button workhours;
-    private Button insurance;
+    private Button update;
     private Button next;
     private DatabaseReference dr, temp;
 
@@ -38,7 +38,7 @@ public class EmployeeProfile extends AppCompatActivity {
         phone_number = (EditText) findViewById(R.id.phonenumber);
         clinic_name = (EditText) findViewById(R.id.clinicname);
         workhours = (Button) findViewById(R.id.workinghour);
-        insurance = (Button) findViewById(R.id.payment);
+        update = (Button) findViewById(R.id.updateClinicButton);
         next = (Button) findViewById(R.id.nextbtn);
 
         workhours.setOnClickListener(new View.OnClickListener() {
@@ -48,10 +48,10 @@ public class EmployeeProfile extends AppCompatActivity {
             }
         });
 
-        insurance.setOnClickListener(new View.OnClickListener() {
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insuranceandpayment(v);
+                updateClinic(clinic_name.getText().toString(), addresstext.getText().toString(), phone_number.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getUid());
             }
         });
 
@@ -82,7 +82,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
         DatabaseReference clinics = FirebaseDatabase.getInstance().getReference("clinics");
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(userId);
 
         clinics.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -97,7 +97,7 @@ public class EmployeeProfile extends AppCompatActivity {
                         break;
 
                     }else{
-                        createClinic(clinicName, clinicAddress, clinicPhoneNumber);
+                        createClinic(clinicName, clinicAddress, clinicPhoneNumber, userId);
                         break;
                     }
                 }
@@ -111,7 +111,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
     }
 
-    public void createClinic(String name, String address, String phoneNumber){
+    public void createClinic(String name, String address, String phoneNumber, String id){
 
         final String clinicName, clinicAddress, clinicPhoneNumber;
         clinicName = name;
@@ -123,8 +123,7 @@ public class EmployeeProfile extends AppCompatActivity {
             return;
         }
 
-        String tempId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DatabaseReference clinicCheck = FirebaseDatabase.getInstance().getReference("User").child(tempId);
+        final DatabaseReference clinicCheck = FirebaseDatabase.getInstance().getReference("User").child(id);
 
         clinicCheck.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -161,4 +160,38 @@ public class EmployeeProfile extends AppCompatActivity {
             Intent intentService = new Intent(getApplicationContext(), insuranceandpayment.class);
             startActivity(intentService);
         }
+
+        public void updateClinic(String name, String address, String phoneNumber, String id){
+
+            final String clinicName, clinicAddress, clinicPhoneNumber;
+            clinicName = name;
+            clinicAddress = address;
+            clinicPhoneNumber = phoneNumber;
+
+            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(id);
+
+
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild("clinic")) {
+
+                        final String tempClinic = dataSnapshot.getValue(User.class).getClinic();
+                        Clinic clinic = new Clinic(clinicName, clinicAddress, clinicPhoneNumber, tempClinic);
+                        FirebaseDatabase.getInstance().getReference("clinics").child(tempClinic).setValue(clinic);
+
+                    } else {
+
+                        Toast.makeText(getApplicationContext(), "There is no clinic associated with this account, please set one", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
     }
