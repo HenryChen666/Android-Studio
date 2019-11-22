@@ -26,6 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreateAccount extends AppCompatActivity  implements View.OnClickListener{
 
     private EditText username;
@@ -110,8 +113,10 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            List<Service> services = new ArrayList<>();
                             String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            User user = new User(name, email,type, id, password);
+                            User user = new User(name, email,type, id, password, services);
+
                            // Toast.makeText(CreateAccount.this,"Authentication Successful",Toast.LENGTH_SHORT).show();
                             FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -119,6 +124,8 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
                                     Toast.makeText(CreateAccount.this,"Register Successful",Toast.LENGTH_SHORT).show();
                                 }
                             });
+
+                            FirebaseDatabase.getInstance().getReference("User").child("services").push();
                             Intent intentwelcome = new Intent(getApplicationContext(), Welcomepage.class);
                             welcomename = name;
                             welcometype = type;

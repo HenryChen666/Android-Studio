@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class loginwelcomepage extends AppCompatActivity {
     private TextView welcomedisply;
-    private Button mainmenu;
+    private Button mainmenu, manageServices;
 
     private FirebaseAuth firebaseauth;
     private FirebaseDatabase firebasedatabase;
@@ -36,6 +36,7 @@ public class loginwelcomepage extends AppCompatActivity {
 
         welcomedisply = (TextView) findViewById(R.id.logindisplaywelcome);
         mainmenu = (Button) findViewById(R.id.loginwelcome);
+        manageServices = (Button) findViewById(R.id.manageServiesBtn);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebasedatabase = FirebaseDatabase.getInstance();
@@ -69,6 +70,13 @@ public class loginwelcomepage extends AppCompatActivity {
                 AlreadyRegister();
             }
         });
+
+        manageServices.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                ManageServices();
+            }
+        });
     }
 
     public void AlreadyRegister(){
@@ -76,6 +84,11 @@ public class loginwelcomepage extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void ManageServices(){
+        Intent intent = new Intent(getApplicationContext(), EmployeeAddServices.class);
         startActivity(intent);
     }
 
