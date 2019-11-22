@@ -3,6 +3,7 @@ package com.example.segfinalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,7 +58,7 @@ public class EmployeeProfile extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createClinic(clinic_name.getText().toString(), addresstext.getText().toString(), phone_number.getText().toString());
+                checkIfExists(clinic_name.getText().toString(), addresstext.getText().toString(), phone_number.getText().toString());
             }
         });
     }
@@ -72,7 +73,45 @@ public class EmployeeProfile extends AppCompatActivity {
         startActivity(intentService);
     }
 
-    public void createClinic(String name, String address, String phoneNumber) {
+    public void checkIfExists(String name, String address, String phoneNumber){
+
+        final String clinicName, clinicAddress, clinicPhoneNumber;
+        clinicName = name;
+        clinicAddress = address;
+        clinicPhoneNumber = phoneNumber;
+
+        DatabaseReference clinics = FirebaseDatabase.getInstance().getReference("clinics");
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(userId);
+
+        clinics.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ps : dataSnapshot.getChildren()){
+
+                    if(clinicName.equals(ps.child("name").getValue())){
+
+                        Toast.makeText(getApplicationContext(), "A clinic with this name already exists, you have been added to that clinic", Toast.LENGTH_LONG).show();
+                        userRef.child("clinic").setValue(ps.getKey());
+                        break;
+
+                    }else{
+                        createClinic(clinicName, clinicAddress, clinicPhoneNumber);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void createClinic(String name, String address, String phoneNumber){
 
         final String clinicName, clinicAddress, clinicPhoneNumber;
         clinicName = name;
