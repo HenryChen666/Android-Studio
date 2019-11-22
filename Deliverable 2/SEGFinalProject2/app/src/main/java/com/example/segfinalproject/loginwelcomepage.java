@@ -1,15 +1,13 @@
 package com.example.segfinalproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class loginwelcomepage extends AppCompatActivity {
     private TextView welcomedisply;
-    private Button mainmenu, manageServices;
+    private Button mainmenu, profile;
 
     private FirebaseAuth firebaseauth;
     private FirebaseDatabase firebasedatabase;
@@ -36,7 +34,7 @@ public class loginwelcomepage extends AppCompatActivity {
 
         welcomedisply = (TextView) findViewById(R.id.logindisplaywelcome);
         mainmenu = (Button) findViewById(R.id.loginwelcome);
-        manageServices = (Button) findViewById(R.id.manageServiesBtn);
+        profile = (Button) findViewById(R.id.editprofile);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebasedatabase = FirebaseDatabase.getInstance();
@@ -71,10 +69,10 @@ public class loginwelcomepage extends AppCompatActivity {
             }
         });
 
-        manageServices.setOnClickListener(new View.OnClickListener(){
+        profile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                ManageServices();
+            public void onClick(View v) {
+                editProfile();
             }
         });
     }
@@ -87,8 +85,8 @@ public class loginwelcomepage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void ManageServices(){
-        Intent intent = new Intent(getApplicationContext(), EmployeeAddServices.class);
+    public void editProfile(){
+        Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
         startActivity(intent);
     }
 
