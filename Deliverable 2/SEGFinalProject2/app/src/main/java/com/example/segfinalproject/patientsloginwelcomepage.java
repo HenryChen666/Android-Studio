@@ -18,9 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class loginwelcomepage extends AppCompatActivity {
+public class patientsloginwelcomepage extends AppCompatActivity {
     private TextView welcomeDisply;
-    private Button mainMenu, profile, manageServices;
+    private Button mainMenu;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
@@ -34,13 +34,10 @@ public class loginwelcomepage extends AppCompatActivity {
 
         welcomeDisply = (TextView) findViewById(R.id.logindisplaywelcome);
         mainMenu = (Button) findViewById(R.id.loginwelcome);
-        profile = (Button) findViewById(R.id.editprofile);
-        manageServices = (Button) findViewById(R.id.mangeservicesbtn);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         user = firebaseAuth.getCurrentUser();
-
 
 
         DatabaseReference databasereference = firebaseDatabase.getReference("User");
@@ -49,11 +46,11 @@ public class loginwelcomepage extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    String username = "" +  ds.child("name").getValue();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String username = "" + ds.child("name").getValue();
                     String usertype = "" + ds.child("usertype").getValue();
 
-                    welcomeDisply.setText("Welcome "+ username + "! You are logged in as " + usertype);
+                    welcomeDisply.setText("Welcome " + username + "! You are logged in as " + usertype);
                 }
             }
 
@@ -62,25 +59,10 @@ public class loginwelcomepage extends AppCompatActivity {
 
             }
         });
-
         mainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlreadyRegister();
-            }
-        });
-
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editProfile();
-            }
-        });
-
-        manageServices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                manageServices();
             }
         });
     }
@@ -93,24 +75,4 @@ public class loginwelcomepage extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    public void editProfile(){
-        Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
-        startActivity(intent);
-    }
-
-    public void manageServices(){
-        Intent intent = new Intent(getApplicationContext(), EmployeeAddServices.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        if (firebaseAuth.getCurrentUser() == null){
-            finish();
-            Intent intentwelcome = new Intent(this, MainActivity.class);
-            startActivity(intentwelcome);
-        }
-    }
 }

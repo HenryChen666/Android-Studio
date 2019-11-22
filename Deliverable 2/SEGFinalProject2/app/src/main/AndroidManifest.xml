@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".insuranceandpayment"></activity>
+        <activity android:name=".patientsloginwelcomepage"></activity>
+        <activity android:name=".insuranceandpayment" />
         <activity android:name=".workhours" />
         <activity android:name=".EmployeeProfile" />
         <activity android:name=".EmployeeList" />
