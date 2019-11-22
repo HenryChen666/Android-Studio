@@ -19,11 +19,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class loginwelcomepage extends AppCompatActivity {
-    private TextView welcomedisply;
-    private Button mainmenu, profile;
+    private TextView welcomeDisply;
+    private Button mainMenu, profile, manageServices;
 
-    private FirebaseAuth firebaseauth;
-    private FirebaseDatabase firebasedatabase;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
 
 
@@ -32,17 +32,18 @@ public class loginwelcomepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginwelcomepage);
 
-        welcomedisply = (TextView) findViewById(R.id.logindisplaywelcome);
-        mainmenu = (Button) findViewById(R.id.loginwelcome);
+        welcomeDisply = (TextView) findViewById(R.id.logindisplaywelcome);
+        mainMenu = (Button) findViewById(R.id.loginwelcome);
         profile = (Button) findViewById(R.id.editprofile);
+        manageServices = (Button) findViewById(R.id.manageServiesBtn);
 
-        firebaseauth = FirebaseAuth.getInstance();
-        firebasedatabase = FirebaseDatabase.getInstance();
-        user = firebaseauth.getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
 
 
-        DatabaseReference databasereference = firebasedatabase.getReference("User");
+        DatabaseReference databasereference = firebaseDatabase.getReference("User");
         Query query = databasereference.orderByChild("email").equalTo(user.getEmail());
 
         query.addValueEventListener(new ValueEventListener() {
@@ -52,7 +53,7 @@ public class loginwelcomepage extends AppCompatActivity {
                     String username = "" +  ds.child("name").getValue();
                     String usertype = "" + ds.child("usertype").getValue();
 
-                    welcomedisply.setText("Welcome "+ username + "! You are logged in as " + usertype);
+                    welcomeDisply.setText("Welcome "+ username + "! You are logged in as " + usertype);
                 }
             }
 
@@ -62,7 +63,7 @@ public class loginwelcomepage extends AppCompatActivity {
             }
         });
 
-        mainmenu.setOnClickListener(new View.OnClickListener() {
+        mainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlreadyRegister();
@@ -73,6 +74,13 @@ public class loginwelcomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editProfile();
+            }
+        });
+
+        manageServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manageServices();
             }
         });
     }
@@ -90,10 +98,15 @@ public class loginwelcomepage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void manageServices(){
+        Intent intent = new Intent(getApplicationContext(), EmployeeAddServices.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onStart(){
         super.onStart();
-        if (firebaseauth.getCurrentUser() == null){
+        if (firebaseAuth.getCurrentUser() == null){
             finish();
             Intent intentwelcome = new Intent(this, MainActivity.class);
             startActivity(intentwelcome);

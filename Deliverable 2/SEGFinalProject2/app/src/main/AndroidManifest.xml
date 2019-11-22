@@ -12,6 +12,7 @@
         <activity android:name=".workhours"></activity>
         <activity android:name=".EmployeeProfile" />
         <activity android:name=".EmployeeList" />
+        <activity android:name=".EmployeeAddServices" />
         <activity android:name=".loginwelcomepage" />
         <activity android:name=".PatientList" />
         <activity android:name=".Welcomepage" />
