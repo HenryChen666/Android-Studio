@@ -125,7 +125,7 @@ public class insuranceandpayment extends AppCompatActivity {
             Toast.makeText(this, "Please enter at least one insurance info", Toast.LENGTH_SHORT).show();
             return;
         }
-        Toast.makeText(this, "WORKS", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Saved Changes", Toast.LENGTH_SHORT).show();
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
