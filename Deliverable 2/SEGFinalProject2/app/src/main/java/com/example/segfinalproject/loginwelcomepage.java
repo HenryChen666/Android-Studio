@@ -116,7 +116,9 @@ public class loginwelcomepage extends AppCompatActivity {
     }
 
     public void clinicinfo(){
-        final DatabaseReference clinicCheck = FirebaseDatabase.getInstance().getReference("User").child(id);
+        final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        final DatabaseReference clinicCheck = FirebaseDatabase.getInstance().getReference("User").child(userId);
 
         clinicCheck.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -127,7 +129,7 @@ public class loginwelcomepage extends AppCompatActivity {
                     startActivity(intent);
 
                 } else {
-                    Toast.makeText(getBaseContext(), "No clinic is associated to your account", Toast.LENGTH_SHORT).show();show();
+                    Toast.makeText(getBaseContext(), "No clinic is associated to your account", Toast.LENGTH_SHORT).show();
                 }
             }
 
