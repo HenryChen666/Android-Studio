@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,8 +116,27 @@ public class loginwelcomepage extends AppCompatActivity {
     }
 
     public void clinicinfo(){
-        Intent intent = new Intent(getApplicationContext(), ClinicInformation.class);
-        startActivity(intent);
+        final DatabaseReference clinicCheck = FirebaseDatabase.getInstance().getReference("User").child(id);
+
+        clinicCheck.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("clinic")) {
+
+                    Intent intent = new Intent(getApplicationContext(), ClinicInformation.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(getBaseContext(), "No clinic is associated to your account", Toast.LENGTH_SHORT).show();show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override
