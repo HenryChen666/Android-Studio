@@ -82,6 +82,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
+            <Button
+                android:id="@+id/manageServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manage Services" />
+
         </LinearLayout>
 
     </LinearLayout>

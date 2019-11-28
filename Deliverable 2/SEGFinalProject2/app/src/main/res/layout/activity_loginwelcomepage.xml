@@ -15,6 +15,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Welcome __! You are logged-in as ____" />
+            android:text="Welcome __! You are logged-in as ____"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
@@ -34,7 +37,7 @@
 
         <Button
             android:id="@+id/loginwelcome"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Logout" />
@@ -45,7 +48,7 @@
 
         <Button
             android:id="@+id/editprofile"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Edit Profile" />
@@ -55,20 +58,8 @@
             android:layout_height="50dp" />
 
         <Button
-            android:id="@+id/mangeservicesbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/ManageServices" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
             android:id="@+id/clinicinfo"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"

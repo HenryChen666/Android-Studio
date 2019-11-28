@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class ClinicInformation extends AppCompatActivity {
-    private Button clinichours, insurance;
+    private Button clinichours, insurance, manageServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class ClinicInformation extends AppCompatActivity {
 
         clinichours = (Button) findViewById(R.id.hours);
         insurance = (Button) findViewById(R.id.insurance);
+        manageServices = (Button) findViewById(R.id.manageServices);
 
         clinichours.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +32,13 @@ public class ClinicInformation extends AppCompatActivity {
                 insurance();
             }
         });
+
+        manageServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manageServices();
+            }
+        });
     }
 
     public void clinichours(){
@@ -40,6 +48,11 @@ public class ClinicInformation extends AppCompatActivity {
 
     public void insurance(){
         Intent intent = new Intent(getApplicationContext(), insuranceandpayment.class);
+        startActivity(intent);
+    }
+
+    public void manageServices(){
+        Intent intent = new Intent(getApplicationContext(), EmployeeAddServices.class);
         startActivity(intent);
     }
 }

@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class loginwelcomepage extends AppCompatActivity {
     private TextView welcomeDisply;
-    private Button mainMenu, profile, manageServices, clinicinfo;
+    private Button mainMenu, profile, clinicinfo;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
@@ -36,7 +36,6 @@ public class loginwelcomepage extends AppCompatActivity {
         welcomeDisply = (TextView) findViewById(R.id.logindisplaywelcome);
         mainMenu = (Button) findViewById(R.id.loginwelcome);
         profile = (Button) findViewById(R.id.editprofile);
-        manageServices = (Button) findViewById(R.id.mangeservicesbtn);
         clinicinfo = (Button) findViewById(R.id.clinicinfo);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -79,13 +78,6 @@ public class loginwelcomepage extends AppCompatActivity {
             }
         });
 
-        manageServices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                manageServices();
-            }
-        });
-
         clinicinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,11 +99,6 @@ public class loginwelcomepage extends AppCompatActivity {
 
     public void editProfile(){
         Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
-        startActivity(intent);
-    }
-
-    public void manageServices(){
-        Intent intent = new Intent(getApplicationContext(), EmployeeAddServices.class);
         startActivity(intent);
     }
 
