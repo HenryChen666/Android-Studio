@@ -142,36 +142,13 @@ public class insuranceandpayment extends AppCompatActivity {
                     final DatabaseReference clinicdatabase = firebaseDatabase.getReference("clinic");
                     final Query clinicquery = clinicdatabase.orderByChild("id").equalTo(clinic_id);
 
-                    if (insurance1.isChecked()) {
-                        clinicdatabase.child("Personal health insurance").setValue("true");
-                    } else {
-                        clinicdatabase.child("Personal health insurance").setValue("false");
-                    }
-                    if (insurance2.isChecked()) {
-                        clinicdatabase.child("Critical illness insurance").setValue("true");
-                    } else {
-                        clinicdatabase.child("Critical illness insurance").setValue("false");
-                    }
-                    if (insurance3.isChecked()) {
-                        clinicdatabase.child("Disability insurance").setValue("true");
-                    } else {
-                        clinicdatabase.child("Disability insurance").setValue("false");
-                    }
-                    if (payment1.isChecked()) {
-                        clinicdatabase.child("Debit").setValue("true");
-                    } else {
-                        clinicdatabase.child("Debit").setValue("false");
-                    }
-                    if (payment2.isChecked()) {
-                        clinicdatabase.child("Visa").setValue("true");
-                    } else {
-                        clinicdatabase.child("Visa").setValue("false");
-                    }
-                    if (payment3.isChecked()) {
-                        clinicdatabase.child("Cash").setValue("true");
-                    } else {
-                        clinicdatabase.child("Cash").setValue("false");
-                    }
+                    clinicdatabase.child("Personal health insurance").setValue(insurance1.isChecked());
+                    clinicdatabase.child("Critical illness insurance").setValue(insurance2.isChecked());
+                    clinicdatabase.child("Disability insurance").setValue(insurance3.isChecked());
+                    clinicdatabase.child("Debit").setValue(payment1.isChecked());
+                    clinicdatabase.child("Visa").setValue(payment2.isChecked());
+                    clinicdatabase.child("Cash").setValue(payment3.isChecked());
+
                 }
             }
             @Override
@@ -181,13 +158,6 @@ public class insuranceandpayment extends AppCompatActivity {
         });
 
 
-
-
-
-
-        //@HENRY - Enter the right class you are going to send it to here
-//        Intent intentService = new Intent(getApplicationContext(), workhours.class);
-//        startActivity(intentService);
     }
 
 }
