@@ -85,6 +85,11 @@ public class EmployeeProfile extends AppCompatActivity {
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(userId);
 
+        if (TextUtils.isEmpty(addresstext.getText().toString().trim()) || TextUtils.isEmpty(phone_number.getText().toString().trim()) || TextUtils.isEmpty(clinic_name.getText().toString().trim())){
+            Toast.makeText(this, "Please enter all information", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         clinics.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -117,11 +122,6 @@ public class EmployeeProfile extends AppCompatActivity {
         clinicName = name;
         clinicAddress = address;
         clinicPhoneNumber = phoneNumber;
-
-        if (TextUtils.isEmpty(addresstext.getText().toString().trim()) || TextUtils.isEmpty(phone_number.getText().toString().trim()) || TextUtils.isEmpty(clinic_name.getText().toString().trim())){
-            Toast.makeText(this, "Please enter all information", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         final DatabaseReference clinicCheck = FirebaseDatabase.getInstance().getReference("User").child(id);
 

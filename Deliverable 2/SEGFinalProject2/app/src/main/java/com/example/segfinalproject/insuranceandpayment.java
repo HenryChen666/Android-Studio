@@ -132,25 +132,31 @@ public class insuranceandpayment extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
 
         DatabaseReference databasereference = firebaseDatabase.getReference("User");
-        Query query = databasereference.orderByChild("email").equalTo(user.getEmail());
+        DatabaseReference reference = databasereference.child(user.getUid());
 
-        query.addValueEventListener(new ValueEventListener() {
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String clinic_id = "" + ds.child("clinic").getValue();
-                    final DatabaseReference clinicdatabase = firebaseDatabase.getReference("clinic");
-                    final Query clinicquery = clinicdatabase.orderByChild("id").equalTo(clinic_id);
+                if (dataSnapshot.hasChild("clinic")) {
 
-                    clinicdatabase.child("Personal health insurance").setValue(insurance1.isChecked());
-                    clinicdatabase.child("Critical illness insurance").setValue(insurance2.isChecked());
-                    clinicdatabase.child("Disability insurance").setValue(insurance3.isChecked());
-                    clinicdatabase.child("Debit").setValue(payment1.isChecked());
-                    clinicdatabase.child("Visa").setValue(payment2.isChecked());
-                    clinicdatabase.child("Cash").setValue(payment3.isChecked());
+                    String clinicId = dataSnapshot.getValue(User.class).getClinic();
+                    DatabaseReference clinicInsurance = FirebaseDatabase.getInstance().getReference("clinics").child(clinicId).child("insurance");
+                    DatabaseReference clinicPayment = FirebaseDatabase.getInstance().getReference("clinics").child(clinicId).child("payment");
 
+                    clinicInsurance.child("Personal health insurance").setValue(insurance1.isChecked());
+                    clinicInsurance.child("Critical illness insurance").setValue(insurance2.isChecked());
+                    clinicInsurance.child("Disability insurance").setValue(insurance3.isChecked());
+                    clinicPayment.child("Debit").setValue(payment1.isChecked());
+                    clinicPayment.child("Visa").setValue(payment2.isChecked());
+                    clinicPayment.child("Cash").setValue(payment3.isChecked());
+
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "There is no clinic associated with this account, please set one", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

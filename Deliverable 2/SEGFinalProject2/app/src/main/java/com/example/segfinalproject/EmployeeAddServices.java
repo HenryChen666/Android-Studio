@@ -42,10 +42,12 @@ public class EmployeeAddServices extends AppCompatActivity {
         databaseAvailableServices = FirebaseDatabase.getInstance().getReference("services");
 
         //Get path of the current user
-        employeeReference = FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        employeeReference = FirebaseDatabase.getInstance().getReference("User").child(id);
 
         //Gets path of that users services
-        addService = employeeReference.child("services");
+        addService = FirebaseDatabase.getInstance().getReference("clinics");
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_add_services);
@@ -61,13 +63,26 @@ public class EmployeeAddServices extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 //This makes sure that the user's id String in the object and the actual id are the same (otherwise deleting doesn't work)
-                Service service = listAvailableServices.get(i);
-                temp = addService.push();
-                key = temp.getKey();
-                service.setId(key);
+                final Service service = listAvailableServices.get(i);
 
-                //adds service object to list
-                temp.setValue(service);
+                employeeReference.child("clinic").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        final String tempClinic = dataSnapshot.getValue(String.class);
+                        final DatabaseReference push = FirebaseDatabase.getInstance().getReference("clinics").child(tempClinic).child("services").push();
+                        final String key = push.getKey();
+                        Service add = new Service(key, service.getServiceName(), service.getServiceEmployee());
+                        push.setValue(add);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
                 return true;
             }
@@ -90,22 +105,39 @@ public class EmployeeAddServices extends AppCompatActivity {
 
         super.onStart();
 
-        addService.addValueEventListener(new ValueEventListener() {
+        employeeReference.child("clinic").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                listEmployeeServices.clear();
+                final String clinicId = dataSnapshot.getValue(String.class);
 
-                for(DataSnapshot ps: dataSnapshot.getChildren()){
+                addService = addService.child(clinicId).child("services");
 
-                    Service service = ps.getValue(Service.class);
+                addService.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    listEmployeeServices.add(service);
+                        listEmployeeServices.clear();
 
-                }
+                        for(DataSnapshot ps: dataSnapshot.getChildren()){
 
-                ServiceList servicesAdapter = new ServiceList(EmployeeAddServices.this, listEmployeeServices);
-                employeeServices.setAdapter(servicesAdapter);
+                            Service service = ps.getValue(Service.class);
+
+                            listEmployeeServices.add(service);
+
+                        }
+
+                        ServiceList servicesAdapter = new ServiceList(EmployeeAddServices.this, listEmployeeServices);
+                        employeeServices.setAdapter(servicesAdapter);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
 
             @Override
@@ -178,7 +210,21 @@ public class EmployeeAddServices extends AppCompatActivity {
 
     public boolean deleteService(String id){
 
-        employeeReference.child("services").child(id).removeValue();
+        final String serviceId = id;
+
+        employeeReference.child("clinic").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final String clinicId = dataSnapshot.getValue(String.class);
+
+                addService.child(serviceId).removeValue();
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         Toast.makeText(getApplicationContext(), "Service Deleted", Toast.LENGTH_LONG).show();
         return true;
