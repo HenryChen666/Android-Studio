@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClinicInfo">
+    <LinearLayout
+        android:layout_width="363dp"
+        android:layout_height="599dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="66dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/clinicinfoname"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Clinic Name"
+                android:textSize="24sp"
+                android:textStyle="bold"  />
+
+            <TextView
+                android:id="@+id/clinicinforating"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Rating: "
+                android:textSize="18sp" />
+        </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/clinicinfoaddress"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Address: "
+            android:textSize="18sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/clinicinfowatingtime"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Estimate waiting time: "
+            android:textSize="18sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/mondayhour"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Monday:  "
+            android:textSize="18sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/tuesdayhour"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Tuesday: "
+            android:textSize="18sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/wednesdayhour"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Wednesday: "
+            android:textSize="18sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/thursdayhour"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Thursday:  "
+            android:textSize="18sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/fridayhour"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Friday:  "
+            android:textSize="18sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/saturdayhour"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Saturday:  "
+            android:textSize="18sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/sundayhour"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Sunday: "
+            android:textSize="18sp" />
+        <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/bookappointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book an appointment" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <Button
+            android:id="@+id/rateclinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Provide Feedback" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
