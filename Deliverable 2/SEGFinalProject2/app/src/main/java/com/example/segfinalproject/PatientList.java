@@ -76,7 +76,14 @@ public class PatientList extends AppCompatActivity {
 
                 for(DataSnapshot post: dataSnapshot.getChildren()){
 
-                    User patient = post.getValue(User.class);
+                    User patient;
+                    String name = post.child("name").getValue(String.class);
+                    final String id = post.child("id").getValue(String.class);
+                    String userType = post.child("usertype").getValue(String.class);
+                    String email = post.child("email").getValue(String.class);
+                    String password = post.child("password").getValue(String.class);
+
+                    patient = new User(name, email, userType, id, password);
 
                     if(patient.getUsertype().equals("Patient")){
                         patients.add(patient);
@@ -131,8 +138,8 @@ public class PatientList extends AppCompatActivity {
             public void onClick(View view){
                 b.dismiss();
             }
-
         });
+
 
     }
 
@@ -141,11 +148,11 @@ public class PatientList extends AppCompatActivity {
         String pass = password;
         String mail = email;
 
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference("User").child(id);
-        dr.removeValue();
-
         FirebaseAuth.getInstance().signInWithEmailAndPassword(mail, pass);
         FirebaseAuth.getInstance().getCurrentUser().delete();
+
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference("User").child(id);
+        dr.removeValue();
 
         Toast.makeText(getApplicationContext(), "Patient Deleted", Toast.LENGTH_LONG).show();
 

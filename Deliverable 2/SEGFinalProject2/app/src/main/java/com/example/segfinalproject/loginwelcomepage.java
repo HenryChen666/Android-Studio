@@ -26,6 +26,7 @@ public class loginwelcomepage extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
+    String userId;
 
 
     @Override
@@ -41,21 +42,21 @@ public class loginwelcomepage extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         user = firebaseAuth.getCurrentUser();
+        userId = user.getUid();
 
 
 
         DatabaseReference databasereference = firebaseDatabase.getReference("User");
-        Query query = databasereference.orderByChild("email").equalTo(user.getEmail());
+        Query query = databasereference.child(userId);
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    String username = "" +  ds.child("name").getValue();
-                    String usertype = "" + ds.child("usertype").getValue();
+                    String username = "" +  dataSnapshot.child("name").getValue(String.class);
+                    String usertype = "" + dataSnapshot.child("usertype").getValue(String.class);
 
                     welcomeDisply.setText("Welcome "+ username + "! You are logged in as " + usertype);
-                }
+
             }
 
             @Override
