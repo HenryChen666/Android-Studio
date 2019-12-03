@@ -22,7 +22,7 @@
             android:layout_height="35dp"
             android:text="Please hold to select a services"
             android:textSize="24sp"
-            android:textStyle="bold"  " />
+            android:textStyle="bold"  />
 
         <ListView
             android:id="@+id/employeeListView"
