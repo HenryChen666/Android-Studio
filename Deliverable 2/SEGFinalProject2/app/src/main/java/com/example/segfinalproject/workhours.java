@@ -285,7 +285,7 @@ public class workhours extends AppCompatActivity {
 
     public void addToDatabase(DatabaseReference ref, String day, String bound, StringBuilder time){
 
-        if(time.equals("")){
+        if(time.toString().equals("")){
             time = time.delete(0,time.length());
             time.append("off");
         }

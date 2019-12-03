@@ -84,10 +84,6 @@ public class ClinicHours extends AppCompatActivity {
 
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         clinicReference = FirebaseDatabase.getInstance().getReference("User").child(userId);
-
-
-        String clinicId = getClinicId(clinicReference);
-        tuesdayendhour.setText(clinicId);
         dr = FirebaseDatabase.getInstance().getReference("clinics");
 
         mondayswt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -337,25 +333,7 @@ public class ClinicHours extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-    public String getClinicId(DatabaseReference clinicReference){
 
-        final StringBuilder clinicId = new StringBuilder();
-        clinicReference.child("clinic").addListenerForSingleValueEvent(new ValueEventListener() {
-            String clinic;
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                clinic = dataSnapshot.getValue(String.class);
-                mondaystarthour.setText(clinic);
-                clinicId.append(clinic);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        return clinicId.toString();
-    }
 
     public void addToDatabase(DatabaseReference ref, String day, String bound, StringBuilder time){
 

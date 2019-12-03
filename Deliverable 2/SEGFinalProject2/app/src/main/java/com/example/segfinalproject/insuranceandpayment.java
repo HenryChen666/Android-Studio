@@ -140,7 +140,8 @@ public class insuranceandpayment extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild("clinic")) {
 
-                    String clinicId = dataSnapshot.getValue(User.class).getClinic();
+
+                    String clinicId = dataSnapshot.child("clinic").getValue(String.class);
                     DatabaseReference clinicInsurance = FirebaseDatabase.getInstance().getReference("clinics").child(clinicId).child("insurance");
                     DatabaseReference clinicPayment = FirebaseDatabase.getInstance().getReference("clinics").child(clinicId).child("payment");
 
