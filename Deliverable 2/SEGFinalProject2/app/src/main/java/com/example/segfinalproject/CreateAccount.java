@@ -125,12 +125,21 @@ public class CreateAccount extends AppCompatActivity  implements View.OnClickLis
                                 }
                             });
 
+                            Intent intentwelcome = new Intent();
+
                             FirebaseDatabase.getInstance().getReference("User").child("services").push();
-                            Intent intentwelcome = new Intent(getApplicationContext(), Welcomepage.class);
+                            if(type == "Employee") {
+                                intentwelcome = new Intent(getApplicationContext(), loginwelcomepage.class);
+                            }else if(type == "Patient"){
+                                intentwelcome = new Intent(getApplicationContext(), patientsloginwelcomepage.class);
+                            }
                             welcomename = name;
                             welcometype = type;
                             intentwelcome.putExtra("Name",welcomename);
                             intentwelcome.putExtra("Type",welcometype);
+
+                            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password);
+
                             startActivity(intentwelcome);
 
                         }else{
