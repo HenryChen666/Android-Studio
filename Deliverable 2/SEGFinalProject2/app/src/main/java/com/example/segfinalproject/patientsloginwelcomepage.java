@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class patientsloginwelcomepage extends AppCompatActivity {
     private TextView welcomeDisply;
-    private Button mainMenu;
+    private Button mainMenu, search;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
@@ -35,20 +35,29 @@ public class patientsloginwelcomepage extends AppCompatActivity {
 
         welcomeDisply = (TextView) findViewById(R.id.logindisplay);
         mainMenu = (Button) findViewById(R.id.loginwelcome);
+        search = (Button) findViewById(R.id.searchButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         user = firebaseAuth.getCurrentUser();
 
 
-        name = getIntent().getExtras().getString("Name");
-        type = getIntent().getExtras().getString("Type");
-        welcomeDisply.setText("Welcome " + name+ "! You are logged-in as " + type);
+        //name = getIntent().getExtras().getString("Name");
+        //type = getIntent().getExtras().getString("Type");
+        //welcomeDisply.setText("Welcome " + name+ "! You are logged-in as " + type);
 
         mainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlreadyRegister();
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Search.class);
+                startActivity(intent);
             }
         });
     }

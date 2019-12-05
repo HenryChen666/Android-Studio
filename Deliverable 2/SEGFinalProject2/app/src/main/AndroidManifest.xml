@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".bookappointment"></activity>
+        <activity android:name=".Search"></activity>
+        <activity android:name=".bookappointment" />
         <activity android:name=".ClinicInfo" />
         <activity android:name=".ClinicHours" />
         <activity android:name=".ClinicInformation" />
