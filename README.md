@@ -10,4 +10,6 @@ The work done on this project is done by:
 4. Nic Vittorini (Polarheart) - 8322610  
 5. Justin Power - 300076223  
 
-Build Status [![BuildStatus](https://circleci.com/gh/SEG2105Project.png?branch=master)](https://circleci.com/gh/SEG2105Project)
+Build Status [![Build
+Status](https://circleci.com/gh/SEG2105Project.png?branch=master)](https://circle
+ci.com/gh/SEG2105Project)
