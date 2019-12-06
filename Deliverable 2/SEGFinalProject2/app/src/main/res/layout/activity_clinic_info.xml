@@ -54,7 +54,7 @@
             android:textSize="18sp" />
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="20dp" />
         <TextView
             android:id="@+id/clinicinfowatingtime"
             android:layout_width="183dp"
@@ -64,7 +64,7 @@
             android:textSize="18sp" />
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="20dp" />
         <TextView
             android:id="@+id/mondayhour"
             android:layout_width="183dp"

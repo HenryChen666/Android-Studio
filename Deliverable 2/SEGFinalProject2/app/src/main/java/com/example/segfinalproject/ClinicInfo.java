@@ -99,12 +99,10 @@ public class ClinicInfo extends AppCompatActivity {
         book_appointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bookappointmentbtn();
+                Intent intent = new Intent(getApplicationContext(), bookappointment.class);
+                intent.putExtra("clinic_id", clinicId);
+                startActivity(intent);
             }
         });
-    }
-    public void bookappointmentbtn(){
-        Intent intent = new Intent(getApplicationContext(), bookappointment.class);
-        startActivity(intent);
     }
 }
