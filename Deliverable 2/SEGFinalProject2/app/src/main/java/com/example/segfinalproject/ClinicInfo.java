@@ -18,8 +18,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ClinicInfo extends AppCompatActivity {
 
-    private TextView clinic_name, clinic_address, monday_hour, tuesday_hour, wendsday_hour, thursday_hour, friday_hour, saturday_hour, sunday_hour;
-    private Button book_appointment;
+    private TextView clinic_name, clinic_address, monday_hour, tuesday_hour, wendsday_hour, thursday_hour, friday_hour, saturday_hour, sunday_hour, totalRating;
+    private Button book_appointment, reviewClinic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +38,17 @@ public class ClinicInfo extends AppCompatActivity {
         saturday_hour = (TextView) findViewById(R.id.saturdayhour);
         sunday_hour = (TextView) findViewById(R.id.sundayhour);
         book_appointment = (Button) findViewById(R.id.bookappointment);
+        reviewClinic = (Button) findViewById(R.id.rateclinic);
+        totalRating = (TextView) findViewById(R.id.clinicinforating);
 
-        String name = intent.getStringExtra("Name");
+        final String name = intent.getStringExtra("Name");
         final String address = intent.getStringExtra("Address");
         final String clinicId = intent.getStringExtra("id");
 
         clinic_name.setText(name);
         clinic_address.setText("Address: "+ address);
+
+        getTotalRatings(clinicId);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("clinics");
         //The path I added
@@ -104,5 +108,64 @@ public class ClinicInfo extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        reviewClinic.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), CreateReview.class);
+                intent.putExtra("id", clinicId);
+                intent.putExtra("name", name);
+                startActivity(intent);
+            }
+
+        });
+
+
+    }
+
+    public void getTotalRatings(String id){
+
+        final DatabaseReference ratingRef = FirebaseDatabase.getInstance().getReference("clinics").child(id);
+
+        ratingRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.hasChild("ratings")){
+
+                    double total;
+                    int temp = 0;
+                    int count = 0;
+
+                    for(DataSnapshot review: dataSnapshot.child("ratings").getChildren()){
+
+                        count++;
+                        temp += review.child("rating").getValue(Long.class);
+
+
+
+                    }
+
+                    total = temp/count;
+
+                    totalRating.setText("Rating: " + total + "/5");
+
+
+                }else{
+
+                    totalRating.setText("No Ratings");
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }
