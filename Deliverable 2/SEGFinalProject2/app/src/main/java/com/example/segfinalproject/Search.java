@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,15 +73,14 @@ public class Search extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                /*          LOOOOOOOOK HEREEEEEEEEEEEEEEE
-
                 Clinic temp = clinics.get(i);
-                Intent clinicPage = new Intent(getApplicationContext(),||||||||||||.class);
+                Intent clinicPage = new Intent(getApplicationContext(),ClinicInfo.class);
                 clinicPage.putExtra("Name", temp.getName());
                 clinicPage.putExtra("Address",temp.getAddress());
                 clinicPage.putExtra("Phone Number", temp.getPhoneNumber());
                 clinicPage.putExtra("id", temp.getId());
-*/
+                startActivity(clinicPage);
+
                 return true;
 
 

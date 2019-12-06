@@ -25,7 +25,7 @@ public class patientsloginwelcomepage extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
-    String name, type;
+    String name, type, userId;
 
 
     @Override
@@ -40,12 +40,28 @@ public class patientsloginwelcomepage extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         user = firebaseAuth.getCurrentUser();
+        userId = user.getUid();
 
 
-        //name = getIntent().getExtras().getString("Name");
-        //type = getIntent().getExtras().getString("Type");
-        //welcomeDisply.setText("Welcome " + name+ "! You are logged-in as " + type);
 
+        DatabaseReference databasereference = firebaseDatabase.getReference("User");
+        Query query = databasereference.child(userId);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String username = "" +  dataSnapshot.child("name").getValue(String.class);
+                String usertype = "" + dataSnapshot.child("usertype").getValue(String.class);
+
+                welcomeDisply.setText("Welcome "+ username + "! You are logged in as " + usertype);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         mainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
