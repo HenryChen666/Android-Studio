@@ -35,18 +35,28 @@ public class ClinicInfo extends AppCompatActivity {
 
         String name = intent.getStringExtra("Name");
         final String address = intent.getStringExtra("Address");
+        final String clinicId = intent.getStringExtra("id");
 
         clinic_name.setText(name);
         clinic_address.setText("Address: "+ address);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("clinics");
-        Query friday = databaseReference.orderByChild("address").equalTo(address);
+        //The path I added
+        Query friday = databaseReference.child(clinicId);
+        /////
         friday.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String friday_end = dataSnapshot.child("hours").child("tuesday").child("end").getValue(String.class);
-                    String friday_start = dataSnapshot.child("start").getValue(String.class);
-                    friday_hour.setText("Friday: " + address + " - " + friday_end);
+
+                    if(dataSnapshot.hasChild("hours")) {
+                        String friday_end = dataSnapshot.child("hours").child("monday").child("end").getValue(String.class);
+                        String friday_start = dataSnapshot.child("hours").child("tuesday").child("start").getValue(String.class);
+                        friday_hour.setText("Friday: " + friday_start + " - " + friday_end);
+                    }else{
+                        friday_hour.setText("Friday: " + "closed" + " - " + "closed");
+
+
+                    }
 
                 }
 
