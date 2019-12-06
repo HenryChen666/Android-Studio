@@ -9,3 +9,5 @@ The work done on this project is done by:
 3. Ethan Allwood - 300061473  
 4. Nic Vittorini (Polarheart) - 8322610  
 5. Justin Power - 300076223  
+
+Build Status [![BuildStatus](https://circleci.com/gh/SEG2105Project.png?branch=master)](https://circleci.com/gh/SEG2105Project)
