@@ -26,7 +26,9 @@
         <activity android:name=".ServiceCreation" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".CreateAccount" />
+        <activity android:name=".CreateReview"/>
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,63 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20pt">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView12"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="Leave a Review" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name:" />
+        <TextView
+            android:id="@+id/clinicName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Name:" />
 
-    <EditText
-        android:id="@+id/nameInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="This name will display on the review"
-        android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/leaveReview"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:text="Leave a Review" />
 
-    <RatingBar
-        android:id="@+id/ratingInput"
-        android:layout_width="387dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:numStars="5"
-        android:rating="0"
-        android:stepSize="1" />
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="This name will display on the review"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Comment:" />
+        <EditText
+            android:id="@+id/commentInput"
+            android:layout_width="match_parent"
+            android:layout_height="136dp"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Leave a comment."
+            android:inputType="textMultiLine" />
 
-    <EditText
-        android:id="@+id/commentInput"
-        android:layout_width="match_parent"
-        android:layout_height="136dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Leave a comment."
-        android:inputType="textMultiLine" />
+        <RatingBar
+            android:id="@+id/ratingInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="1" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="388dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Submit" />
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="388dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Submit" />
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

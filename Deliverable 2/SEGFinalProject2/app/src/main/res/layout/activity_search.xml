@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/clinicName"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:gravity="center"

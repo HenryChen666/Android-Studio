@@ -38,7 +38,8 @@ public class bookappointment extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Service service = list_services.get(position);
-                showBookingDialog(service.getId(),service.getServiceName())
+                //showBookingDialog(service.getId(),service.getServiceName());
+                return true;
             }
         });
 
