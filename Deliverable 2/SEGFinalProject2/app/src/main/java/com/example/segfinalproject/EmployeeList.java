@@ -1,11 +1,6 @@
 package com.example.segfinalproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,14 +9,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -142,7 +139,8 @@ public class EmployeeList extends AppCompatActivity {
         String mail = email;
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(mail, pass);
-        FirebaseAuth.getInstance().getCurrentUser().delete();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.delete();
 
         DatabaseReference dr = FirebaseDatabase.getInstance().getReference("User").child(id);
         dr.removeValue();
